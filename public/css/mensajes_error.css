@@ -1,0 +1,6 @@
+.borrar-producto-mensaje {
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px; /* Padding for some space around the message */
+    border-radius: 5px; /* Rounded corners */
+}
