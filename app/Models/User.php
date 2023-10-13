@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -57,4 +58,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function productos()
+    {
+        return $this->hasMany(Productos::class);
+    }
 }
+// $user = User::find(1);
+// $productos = $user->productos;
+

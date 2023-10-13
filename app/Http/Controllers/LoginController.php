@@ -75,7 +75,7 @@ class LoginController extends Controller
     {
         if(Auth::check())
         {
-            return view('admin.panel');
+            return view('ver.productos');
         }
         
         return redirect()->route('login')
