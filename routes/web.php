@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\WikiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +40,5 @@ Route::controller(ProductosController::class)->group(function(){
 });
 
 
+
+Route::get('/Wiki', [WikiController::class, 'view'])->name('wiki');

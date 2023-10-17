@@ -6,9 +6,10 @@ use App\Models\productos;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\View\View;
-use Livewire\Features\SupportRedirects\Redirector;
-use Illuminate\Database\Eloquent\Model\update;
+// use Illuminate\View\View;
+// use Livewire\Features\SupportRedirects\Redirector;
+// use Illuminate\Database\Eloquent\Model\update;
+use Illuminate\Support\Facades\Auth;
 
 class ProductosController extends Controller
 {
@@ -163,5 +164,14 @@ class ProductosController extends Controller
         }
     
         return redirect()->back()->with('mensaje', $mensaje);
+    }
+    public function obtenerProductosUsuario()
+    {
+        $user = Auth::user(); // Obtener el usuario autenticado
+        $productos = $user->productos; // Obtener los productos del usuario
+    
+        // Aquí puedes realizar cualquier acción con los productos del usuario
+    
+        return view('ver.productos', ['productos' => $productos]);
     }
 }

@@ -63,7 +63,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Productos::class);
     }
+
 }
-// $user = User::find(1);
-// $productos = $user->productos;
+
 

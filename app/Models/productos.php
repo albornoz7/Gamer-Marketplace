@@ -11,10 +11,10 @@ class productos extends Model
 
     protected $fillable =['nombre','descripcion','foto','cantidad', 'categoria','precio','status','due_date'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
 }
