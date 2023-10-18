@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::controller(LoginController::class)->group(function() {
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
@@ -31,12 +32,12 @@ Route::controller(LoginController::class)->group(function() {
 Route::controller(ProductosController::class)->group(function(){
     Route::post('/Categorias', 'categoria')->name('categoria');
     Route::get('/Productos', 'show')->name('ver.productos');
-    Route::get('/Lista_Productos', 'index')->name('ver.lista.productos');
-    Route::get('/Crear_Producto', 'create')->name('crear.producto');
-    Route::post('/Guardar','store')->name('guardar.producto');
-    Route::get('/Editar_Producto/{id}', 'edit')->name('editar.producto');
-    Route::put('/Actualizar/{id}', 'update')->name('actualizar.producto');
-    Route::delete('/Eliminar_Producto/{id}', 'destroy')->name('eliminar.producto');
+    Route::get('/Lista_Productos', 'index')->name('ver.lista.productos')->middleware('auth');
+    Route::get('/Crear_Producto', 'create')->name('crear.producto')->middleware('auth');
+    Route::post('/Guardar','store')->name('guardar.producto')->middleware('auth');
+    Route::get('/Editar_Producto/{id}', 'edit')->name('editar.producto')->middleware('auth');
+    Route::put('/Actualizar/{id}', 'update')->name('actualizar.producto')->middleware('auth');
+    Route::delete('/Eliminar_Producto/{id}', 'destroy')->name('eliminar.producto')->middleware('auth');
 });
 
 

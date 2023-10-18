@@ -133,10 +133,11 @@ class ProductosController extends Controller
 
     
     public function update(Request $request, $id){
+        
 
         $imageName = date('YmdHis') . '.' . $request->file('foto')->getClientOriginalExtension();
         $request->file('foto')->move(public_path('fotos'), $imageName);
-        
+
         $producto = productos::find($id);
         $producto->nombre = $request->input('nombre');
         $producto->descripcion = $request->input('descripcion');
@@ -146,8 +147,8 @@ class ProductosController extends Controller
         $producto->due_date = $request->input('due_date');
         $producto->categoria = $request->input('categoria');
         $producto->foto = 'fotos/' . $imageName;
+
         $producto->save();
-        
         return redirect()->route('ver.lista.productos');
     }
 
@@ -165,13 +166,13 @@ class ProductosController extends Controller
     
         return redirect()->back()->with('mensaje', $mensaje);
     }
-    public function obtenerProductosUsuario()
-    {
-        $user = Auth::user(); // Obtener el usuario autenticado
-        $productos = $user->productos; // Obtener los productos del usuario
+    // public function obtenerProductosUsuario()
+    // {
+    //     $user = Auth::user(); // Obtener el usuario autenticado
+    //     $productos = $user->productos; // Obtener los productos del usuario
     
-        // Aquí puedes realizar cualquier acción con los productos del usuario
+    //     // Aquí puedes realizar cualquier acción con los productos del usuario
     
-        return view('ver.productos', ['productos' => $productos]);
-    }
+    //     return view('ver.productos', ['productos' => $productos]);
+    // }
 }

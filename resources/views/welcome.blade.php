@@ -4,9 +4,21 @@
 
         <div class="max-w-2xl mx-auto">
 
+            <section class="bg-gray-50 dark:bg-gray-900">
+                <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
+                    <div class="flex flex-col justify-center">
+                        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">We invest in the world’s potential</h1>
+                        <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+                        <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Read more about our app 
+                            <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>    
+
             <div id="default-carousel" class="relative" data-carousel="static">
                 <!-- Carousel wrapper -->
-                <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+                <div class="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96 w-full">
                     <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
@@ -42,11 +54,8 @@
                 </button>
             </div>
 
-            <p class="mt-5">This carousel slider component is part of a larger, open-source library of Tailwind CSS components. Learn
-                more
-                by going to the official <a class="text-blue-600 hover:underline"
-                    href="https://flowbite.com/docs/getting-started/introduction/" target="_blank">Flowbite Documentation</a>.
-            </p>
+            
             <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+            
         </div>
 @endsection
