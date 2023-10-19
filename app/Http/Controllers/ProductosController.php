@@ -95,8 +95,11 @@ class ProductosController extends Controller
         
         ]);
 
+        
+
         $imageName = date('YmdHis') . '.' . $request->file('foto')->getClientOriginalExtension();
         $request->file('foto')->move(public_path('fotos'), $imageName);
+        $user_id = Auth::id();
 
         productos::create([
             'nombre' => $request->input('nombre'),
@@ -107,6 +110,7 @@ class ProductosController extends Controller
             'categoria' => $request->input('categoria'),
             'due_date' => $request->input('due_date'),
             'foto'=> 'fotos/' . $imageName,
+            'user_id' => $user_id,
         ]);
 
         return redirect()->route('ver.lista.productos');
@@ -132,25 +136,46 @@ class ProductosController extends Controller
     }
 
     
-    public function update(Request $request, $id){
-        
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'nombre' => 'required',
+        'descripcion' => 'required',
+        'cantidad' => 'required',
+        'precio' => 'required',
+        'status' => 'required',
+        'due_date' => 'required',
+        'categoria' => 'required',
+        'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $imageName = date('YmdHis') . '.' . $request->file('foto')->getClientOriginalExtension();
-        $request->file('foto')->move(public_path('fotos'), $imageName);
+    $producto = productos::find($id);
 
-        $producto = productos::find($id);
-        $producto->nombre = $request->input('nombre');
-        $producto->descripcion = $request->input('descripcion');
-        $producto->cantidad = $request->input('cantidad');
-        $producto->precio = $request->input('precio');
-        $producto->status = $request->input('status');
-        $producto->due_date = $request->input('due_date');
-        $producto->categoria = $request->input('categoria');
-        $producto->foto = 'fotos/' . $imageName;
-
-        $producto->save();
-        return redirect()->route('ver.lista.productos');
+    // Eliminar foto anterior si existe
+    if ($producto->foto) {
+        $rutaFotoAnterior = public_path($producto->foto);
+        if (file_exists($rutaFotoAnterior)) {
+            unlink($rutaFotoAnterior);
+        }
     }
+
+    // Mover y guardar la nueva foto
+    $imageName = date('YmdHis') . '.' . $request->file('foto')->getClientOriginalExtension();
+    $request->file('foto')->move(public_path('fotos'), $imageName);
+    $producto->foto = 'fotos/' . $imageName;
+
+    // Actualizar los demás campos del producto
+    $producto->nombre = $request->input('nombre');
+    $producto->descripcion = $request->input('descripcion');
+    $producto->cantidad = $request->input('cantidad');
+    $producto->precio = $request->input('precio');
+    $producto->status = $request->input('status');
+    $producto->due_date = $request->input('due_date');
+    $producto->categoria = $request->input('categoria');
+    $producto->save();
+
+    return redirect()->route('ver.lista.productos');
+}
 
     public function destroy($id){
         $producto = productos::find($id);
@@ -166,13 +191,15 @@ class ProductosController extends Controller
     
         return redirect()->back()->with('mensaje', $mensaje);
     }
-    // public function obtenerProductosUsuario()
-    // {
-    //     $user = Auth::user(); // Obtener el usuario autenticado
-    //     $productos = $user->productos; // Obtener los productos del usuario
-    
-    //     // Aquí puedes realizar cualquier acción con los productos del usuario
-    
-    //     return view('ver.productos', ['productos' => $productos]);
-    // }
 }
+
+//     public function obtenerProductosUsuario()
+//     {
+//         $user = Auth::user(); // Obtener el usuario autenticado
+//         $productos = $user->productos; // Obtener los productos del usuario
+    
+//         // Aquí puedes realizar cualquier acción con los productos del usuario
+    
+//         return view('ver.productos', ['productos' => $productos]);
+//     }
+// }

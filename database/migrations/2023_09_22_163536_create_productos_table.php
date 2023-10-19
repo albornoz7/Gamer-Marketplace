@@ -21,7 +21,11 @@ return new class extends Migration
             $table->string('status');
             $table->string('foto')->nullable();
             $table->string('categoria');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 
