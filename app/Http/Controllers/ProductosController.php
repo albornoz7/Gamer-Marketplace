@@ -108,7 +108,7 @@ class ProductosController extends Controller
             'precio' => $request->input('precio'),
             'status' => $request->input('status'),
             'categoria' => $request->input('categoria'),
-            'due_date' => $request->input('due_date'),
+            'due_date' => date('Y-m-d'),
             'foto'=> 'fotos/' . $imageName,
             'user_id' => $user_id,
         ]);
