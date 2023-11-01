@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\WikiController;
+use App\Http\Controllers\VendedorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,3 +44,4 @@ Route::controller(ProductosController::class)->group(function(){
 
 
 Route::get('/Wiki', [WikiController::class, 'view'])->name('wiki');
+Route::get('/vendedor', [VendedorController::class, 'view'])->name('vendedor');
