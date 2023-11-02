@@ -15,21 +15,23 @@
                     <h3 class="font-semibold text-2xl text-gray-800">Nuevo Vendedor</h3>
                     
                 </div>
+                <form action="{{route('guardar_nuevo_vendedor')}}" method="POST">
+                    @csrf
+                <div class="space-y-6">
+                    {{-- <div class="">
+                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text"  placeholder="Nombre">
+                </div> --}}
+                <div class="space-y-6">
+                    {{-- <div class="">
+                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text"  placeholder="Correo">
+                </div> --}}
                 <div class="space-y-6">
                     <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="" placeholder="Nombre">
+                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="celular" placeholder="Celular">
                 </div>
                 <div class="space-y-6">
                     <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="" placeholder="Correo">
-                </div>
-                <div class="space-y-6">
-                    <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="" placeholder="Celular">
-                </div>
-                <div class="space-y-6">
-                    <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="" placeholder="Direccion">
+                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="direccion" placeholder="Direccion">
                 </div>
 
                         <div class="flex items-center justify-center space-x-2 my-5">
@@ -63,6 +65,6 @@
                 </div>
             </div>
         </div>
-        
+    </form>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"></script>
     @endsection

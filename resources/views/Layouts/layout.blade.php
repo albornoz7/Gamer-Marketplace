@@ -65,10 +65,21 @@
                         </div>
                         <ul class="py-2" aria-labelledby="user-menu-button">
                             <li>
-                            <a href="{{route('crear.producto')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vender</a>
+                                @if(Auth::check())
+                                @if(Auth::user()->rol_id == 1)
+                                    <a href="{{ route('vendedor') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vendedor</a>
+                                @else
+                                    <a href="{{ route('crear.producto') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vender</a>
+                                @endif
+                            @endif
                             </li>
                             <li>
-                            <a href="{{route('ver.lista.productos')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Productos</a>
+                                @if(Auth::check())
+                                @if(Auth::user()->rol_id == 1)
+                                    <a href="{{ route('vendedor') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vendedor</a>
+                                @else
+                                <a href="{{route('ver.lista.productos')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Productos</a>                                @endif
+                            @endif
                             </li>
                             
                             <li><a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" href="{{ route('logout') }}"

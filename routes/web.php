@@ -41,7 +41,10 @@ Route::controller(ProductosController::class)->group(function(){
     Route::delete('/Eliminar_Producto/{id}', 'destroy')->name('eliminar.producto')->middleware('auth');
 });
 
+Route::controller(VendedorController::class)->group(function(){
+    Route::get('/vendedor', [VendedorController::class, 'view'])->name('vendedor');
+    Route::post('/Guardar_vendedor','crearVendedor')->name('guardar_nuevo_vendedor')->middleware('auth');
+});
 
 
 Route::get('/Wiki', [WikiController::class, 'view'])->name('wiki');
-Route::get('/vendedor', [VendedorController::class, 'view'])->name('vendedor');
