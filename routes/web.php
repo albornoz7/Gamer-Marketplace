@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\WikiController;
 use App\Http\Controllers\VendedorController;
+use App\Http\Controllers\CarritoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,3 +49,5 @@ Route::controller(VendedorController::class)->group(function(){
 
 
 Route::get('/Wiki', [WikiController::class, 'view'])->name('wiki');
+
+Route::get('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem');

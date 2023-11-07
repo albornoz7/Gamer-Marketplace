@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="grid grid-cols-1 md:grid-cols-4 ">
+        
         @foreach($productos as $producto)
             <div class="!z-5 relative m-4 rounded-[20px] max-w-[300px] bg-clip-border bg-gray-200 shadow-3xl shadow-lg flex flex-col w-full !p-4 3xl:p-![18px]  undefined">
                 <div class="h-full w-full">
