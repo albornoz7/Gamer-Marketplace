@@ -50,4 +50,4 @@ Route::controller(VendedorController::class)->group(function(){
 
 Route::get('/Wiki', [WikiController::class, 'view'])->name('wiki');
 
-Route::get('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem');
+Route::post('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem');
