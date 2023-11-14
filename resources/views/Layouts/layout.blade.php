@@ -14,6 +14,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+
     
     <!-- component -->
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
@@ -39,17 +40,59 @@
                 @auth
                 @if (Cart::content()->count())
                 <div class="flex items-center md:order-2">
-                    <button>
+                    <button  data-popover-target="popover-click" data-popover-trigger="click">
                     <!-- component -->
                     <div class="relative py-2">
                         <div class="t-0 absolute left-3">
-                            <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{{Cart::content()->cout()}}</p>
+                            <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{{Cart::content()->count()}}</p>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="file: mt-4 h-6 w-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                         </svg>
                     </div>
                 </button>
+                <div data-popover id="popover-click" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                    @if (count(Cart::content()))
+                    <div  class="relative overflow-x-auto w-72">
+                        
+                        <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 rounded-s-lg">
+                                        Nombre del Producto
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Cantidad 
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 rounded-e-lg">
+                                        Precio
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Cart::content() as $item)
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $item->name }}
+                                    </th>
+                                            <td class="px-6 py-4">{{ $item->qty}} </td>
+                                            <td class="px-6 py-4">{{ number_format($item->qty * $item->price, 2) }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr class="font-semibold text-gray-900 dark:text-white">
+                                    <td class="px-6 py-3"></td>
+                                    <td class="px-6 py-3"></td>
+                                    <th scope="row" class="px-6 py-3 text-base">Total: {{ Cart::total() }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        @endif
+                    </div>
+                    <div data-popper-arrow></div>
+                </div>
+                
                 </div>
                 @endif
 
@@ -155,6 +198,9 @@
         @yield('content')
     </div>
 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
 
 
 

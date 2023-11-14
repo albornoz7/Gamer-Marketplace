@@ -21,7 +21,7 @@
                             <div class="flex md:mt-2 lg:mt-0">
                                 <input type="hidden" name="producto_id" value="{{ $producto->id }}">
 
-                                <button href="" type="submit"
+                                <button href=""type="submit"
                                     class="linear rounded-[20px] bg-brand-900 px-4 py-2 text-xs font-medium  transition duration-200 hover:bg-brand-800 active:bg-brand-700 text-white">Agregar
                                     al carrito</button>
                             </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
         @endforeach
-        @if (count(Cart::content()))
+        {{-- @if (count(Cart::content()))
             <div class="grid grid-rows-3 grid-flow-col gap-4">
                 <p>Compras</p>
                 <table class="table-fixed">
@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                         @foreach (Cart::content() as $item)
-                            <tr>
+                            <tr class="bg-white dark:bg-gray-800">
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->qty}} </td>
                                 <td>{{ number_format($item->qty * $item->price, 2) }}</td>
@@ -57,6 +57,46 @@
                 </table>
             </div>
             <p><a href="/vercarrito">Mostrar Carrito</a></p>
-        @endif
+        @endif --}}
     </div>
+    
+    {{-- @if (count(Cart::content()))
+<div  class="relative overflow-x-auto">
+    
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 rounded-s-lg">
+                    Nombre del Producto
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Cantidad 
+                </th>
+                <th scope="col" class="px-6 py-3 rounded-e-lg">
+                    Precio
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Cart::content() as $item)
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ $item->name }}
+                </th>
+                        <td class="px-6 py-4">{{ $item->qty}} </td>
+                        <td class="px-6 py-4">{{ number_format($item->qty * $item->price, 2) }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+        <tfoot>
+            <tr class="font-semibold text-gray-900 dark:text-white">
+                <td class="px-6 py-3"></td>
+                <td class="px-6 py-3"></td>
+                <th scope="row" class="px-6 py-3 text-base">Total{{ Cart::total() }}</th>
+            </tr>
+        </tfoot>
+    </table>
+    @endif
+</div> --}}
+
 @endsection

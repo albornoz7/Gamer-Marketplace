@@ -32,7 +32,7 @@ Route::controller(LoginController::class)->group(function() {
 
 // Rutas de los productos
 Route::controller(ProductosController::class)->group(function(){
-    Route::post('/Categorias', 'categoria')->name('categoria');
+    Route::match(['get','post'],'/Categorias', 'categoria')->name('categoria');
     Route::get('/Productos', 'show')->name('ver.productos');
     Route::get('/Lista_Productos', 'index')->name('ver.lista.productos')->middleware('auth');
     Route::get('/Crear_Producto', 'create')->name('crear.producto')->middleware('auth');
