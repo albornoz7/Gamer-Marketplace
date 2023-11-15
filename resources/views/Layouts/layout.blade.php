@@ -76,18 +76,24 @@
                                         {{ $item->name }}
                                     </th>
                                             <td class="px-6 py-4">{{ $item->qty}} </td>
+                                            <td class="px-6 py-4">{{ $item->description}} </td>
                                             <td class="px-6 py-4">{{ number_format($item->qty * $item->price, 2) }}</td>
+                                            <td class="px-6 py-4">
+                                                <a href="{{route('eliminar',$item->rowId)}}"  class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
+                                            </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr class="font-semibold text-gray-900 dark:text-white">
                                     <td class="px-6 py-3"></td>
-                                    <td class="px-6 py-3"></td>
+                                    <td class="px-6 py-3"><a href="/vercarrito">carrito</a></td>
                                     <th scope="row" class="px-6 py-3 text-base">Total: {{ Cart::total() }}</th>
+                                    
                                 </tr>
                             </tfoot>
                         </table>
+                        
                         @endif
                     </div>
                     <div data-popper-arrow></div>

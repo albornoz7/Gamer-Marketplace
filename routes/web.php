@@ -51,3 +51,9 @@ Route::controller(VendedorController::class)->group(function(){
 Route::get('/Wiki', [WikiController::class, 'view'])->name('wiki');
 
 Route::post('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem');
+
+Route::get('/vercarrito', [CarritoController::class, 'vercarrito'])->name('vercarrito');
+Route::get('/incrementar/{id}', [CarritoController::class, 'incrementarcantidad'])->name('incrementarcantidad');
+Route::get('/diminuir/{id}', [CarritoController::class, 'disminuircantidad'])->name('disminuircantidad');
+Route::get('/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('eliminar');
+Route::get('/confirmarcarrito', [CarritoController::class, 'confirmarcarrito'])->name('confirmarcarrito');
