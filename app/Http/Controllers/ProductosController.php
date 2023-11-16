@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 // use Livewire\Features\SupportRedirects\Redirector;
 // use Illuminate\Database\Eloquent\Model\update;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductosController extends Controller
 {
@@ -121,8 +122,9 @@ class ProductosController extends Controller
      * Display the specified resource.
      */
     public function show(productos $productos)
-    {
-        $productos = productos::all(); // Recuperar todos los registros de la tabla 'productos'
+    {   
+        $user_id = Auth::id();
+        $productos = productos::where('user_id', "!=", $user_id)->get(); // Recuperar todos los registros de la tabla 'productos'
         return view('productos.categorias', compact('productos'));
     }
 

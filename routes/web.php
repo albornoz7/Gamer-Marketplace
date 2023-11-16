@@ -57,3 +57,11 @@ Route::get('/incrementar/{id}', [CarritoController::class, 'incrementarcantidad'
 Route::get('/diminuir/{id}', [CarritoController::class, 'disminuircantidad'])->name('disminuircantidad');
 Route::get('/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('eliminar');
 Route::get('/confirmarcarrito', [CarritoController::class, 'confirmarcarrito'])->name('confirmarcarrito');
+
+/* Route::controller(ProductosController::class)->group(function(){
+    Route::get('/consolawiki', 'mostrar')->name('#');
+    Route::get('/Crear_consola', 'crear')->name('#')->middleware('auth');
+    Route::post('/Guardar_consola','guardar')->name('#')->middleware('auth');
+    Route::get('/Editar_Producto/{id}', 'editar')->name('#')->middleware('auth');
+    Route::put('/Actualizar/{id}', 'actualizar')->name('#')->middleware('auth');
+}); */
