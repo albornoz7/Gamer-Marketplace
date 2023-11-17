@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\WikiController;
 use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PagosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,3 +66,9 @@ Route::get('/confirmarcarrito', [CarritoController::class, 'confirmarcarrito'])-
     Route::get('/Editar_Producto/{id}', 'editar')->name('#')->middleware('auth');
     Route::put('/Actualizar/{id}', 'actualizar')->name('#')->middleware('auth');
 }); */
+
+
+Route::post('/session', [CarritoController::class, 'session'])->name('session');
+Route::get('/success', [CarritoController::class, 'success'])->name('success');
+Route::post('/webhook', [CarritoController::class, 'webhook'])->name('webhook');
+Route::get('/cancel', [CarritoController::class, 'cancel'])->name('cancel');

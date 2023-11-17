@@ -7,7 +7,7 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-16 py-3">
-                    <span class="sr-only">Image</span>
+                    <span class="sr-only">Imagen</span>
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Nombre de Producto
@@ -69,7 +69,12 @@
             @auth
             <div class="grow-0 h-14 ...">
                 @auth
-                    <a href="http://">Realizar Compra</a>
+                <form action="{{ url('/session') }}" method="post">
+                    @csrf
+                    <button>
+                        pagar
+                    </button>
+                </form>
                 @else
                     <a href="">Iniciar Sesion</a>
                 @endauth
