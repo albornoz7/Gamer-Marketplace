@@ -7,6 +7,7 @@ use App\Http\Controllers\WikiController;
 use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PagosController;
+use App\Http\Controllers\PedidosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,3 +73,7 @@ Route::post('/session', [CarritoController::class, 'session'])->name('session');
 Route::get('/success', [CarritoController::class, 'success'])->name('success');
 Route::post('/webhook', [CarritoController::class, 'webhook'])->name('webhook');
 Route::get('/cancel', [CarritoController::class, 'cancel'])->name('cancel');
+
+Route::get('/pedidos', [PedidosController::class, 'index'])->name('pedidos');
+Route::get('/pedidos/detalles/{id}', [PedidosController::class, 'show'])->name('detalles.pedidos');
+Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('pedido.estado');
