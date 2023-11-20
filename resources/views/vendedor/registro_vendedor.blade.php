@@ -39,23 +39,19 @@
                             <span class="text-black-300 font-normal">Metodos de pago</span>
                             <span class="h-px w-16 bg-gray-100"></span>
                         </div>
-                        <div class="flex justify-center gap-5 w-full ">
-
-                            <button type="submit" class="w-full flex items-center justify-center mb-6 md:mb-0 border border-blue-300 hover:border-blue-400 hover:bg-blue-400 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500">
-                    <!-- <svg class="w-4" fill="#fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.99 13.9v-3.72h9.36c.14.63.25 1.22.25 2.05 0 5.71-3.83 9.77-9.6 9.77-5.52 0-10-4.48-10-10S6.48 2 12 2c2.7 0 4.96.99 6.69 2.61l-2.84 2.76c-.72-.68-1.98-1.48-3.85-1.48-3.31 0-6.01 2.75-6.01 6.12s2.7 6.12 6.01 6.12c3.83 0 5.24-2.65 5.5-4.22h-5.51v-.01Z"></path></svg> -->
-                <span>Bancolombia</span>
-                </button>
-
-                <button type="submit" class="w-full flex items-center justify-center mb-6 md:mb-0 border border-blue-300 hover:border-blue-400 hover:bg-blue-400 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500">
-                    <!-- <svg class="w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-rule="evenodd" d="M9.945 22v-8.834H7V9.485h2.945V6.54c0-3.043 1.926-4.54 4.64-4.54 1.3 0 2.418.097 2.744.14v3.18h-1.883c-1.476 0-1.82.703-1.82 1.732v2.433h3.68l-.736 3.68h-2.944L13.685 22"></path></svg> -->
-                <span>Nequi</span>
-                </button>
-
-                <button type="submit" class="w-full flex items-center justify-center mb-6 md:mb-0 border border-blue-300 hover:border-blue-400 hover:bg-blue-400 text-sm text-gray-500 p-3  rounded-lg tracking-wide font-medium  cursor-pointer transition ease-in duration-500">
-                <!-- <svg class="w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-rule="evenodd" d="M9.945 22v-8.834H7V9.485h2.945V6.54c0-3.043 1.926-4.54 4.64-4.54 1.3 0 2.418.097 2.744.14v3.18h-1.883c-1.476 0-1.82.703-1.82 1.732v2.433h3.68l-.736 3.68h-2.944L13.685 22"></path></svg> -->
-                <span>Efectivo</span>
-                </button>
-                        </div>
+                        
+                <div class="relative z-0 w-full mb-6 group">
+                    <div class="relative z-0 w-full mb-6 group">
+                        <select name="categoria" id="">
+                            <option value="PlayStation">Bancolombia</option>
+                            <option value="Xbox">Nequi</option>
+                            <option value="Nintendo">Efectivo</option>
+                            <option value="Perifericos">Pay-Pal</option>
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
                         <div>
                             <button type="submit" class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">
                     Sign in

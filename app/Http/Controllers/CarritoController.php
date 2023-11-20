@@ -7,7 +7,9 @@ use Cart;
 use App\Models\productos;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\pedidos;
+use App\Models\DetallesPedidos;
+use App\Models\vendedor;
 
 class CarritoController extends Controller
 {
@@ -61,9 +63,44 @@ class CarritoController extends Controller
         Cart::remove($request->id);
         return back()->with("success","Producto eliminado");
     }
-    // public function confirmarcarrito(){
-        
+
+    public function guardarCarrito($session_id)
+    {
+
+        $pedidos = new pedidos();
+
+        $pedidos->subtotal = str_replace(',', '', Cart::subtotal());
+        $pedidos->total = str_replace(',', '', Cart::total());
+
+        $pedidos->user_id = auth()->user()->id;
+        $pedidos->session_id = $session_id;
+        $pedidos->email = auth()->user()->email;
+        $pedidos->metodos_de_pago = auth()->user()->metodos_de_pago;
+        $pedidos->direccion = auth()->user()->direccion;
+        $pedidos->celular = auth()->user()->celular;
+
+        $pedidos->save();
+
+        foreach (Cart::content() as $item) {
+            $DetallesPedidos = new DetallesPedidos();
+            $DetallesPedidos->precio = $item->price;
+            $DetallesPedidos->cantidad = $item->qty;
+            $DetallesPedidos->producto_id = $item->id;
+            $DetallesPedidos->pedido_id = $pedidos->id;
+            $DetallesPedidos->descripcion = $item->options->descripcion;
+
+            $DetallesPedidos->save();
+        }
+    }
+
+    //     self::ordenMakeNotification($pedidos);
     // }
+    // static function ordenMakeNotification($pedidos)
+    // {
+    //     // event(new OrdenEvent($orden));
+
+    // }
+
     public function session()
     {
 
@@ -102,7 +139,7 @@ class CarritoController extends Controller
 			'cancel_url' => route('cancel'),
 		]);
 
-   
+    
         return redirect()->away($checkoutSession->url);
     }
     public function success(Request $request)
