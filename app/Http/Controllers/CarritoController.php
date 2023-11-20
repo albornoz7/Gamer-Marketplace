@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\Auth;
 use App\Models\pedidos;
 use App\Models\DetallesPedidos;
+use App\Models\User;
 use App\Models\vendedor;
 
 class CarritoController extends Controller
@@ -23,16 +24,17 @@ class CarritoController extends Controller
             'price' => $producto->precio,
             'qty' =>1,
             'weight'=>1,
-            'description'=>$producto->descripcion,
             'options'=>[
                 'foto'=>$producto->foto,
+                'descripcion'=>$producto->descripcion,
                 'nombre'=> null,
+                'vendedor' => $producto->user_id,
 
-
-
-            ]
-            
+            ]    
         ]);
+
+        $vendedor = User::find($producto);
+
     return redirect()->back()->with("success","$producto->nombre !Se ha agregado un Nuevo Producto");
 
         
@@ -66,32 +68,33 @@ class CarritoController extends Controller
 
     public function guardarCarrito($session_id)
     {
-
         $pedidos = new pedidos();
-
-        $pedidos->subtotal = str_replace(',', '', Cart::subtotal());
         $pedidos->total = str_replace(',', '', Cart::total());
-
         $pedidos->user_id = auth()->user()->id;
         $pedidos->session_id = $session_id;
         $pedidos->email = auth()->user()->email;
-        $pedidos->metodos_de_pago = auth()->user()->metodos_de_pago;
-        $pedidos->direccion = auth()->user()->direccion;
-        $pedidos->celular = auth()->user()->celular;
+        $pedidos->name = auth()->user()->name;
+
+
 
         $pedidos->save();
 
         foreach (Cart::content() as $item) {
+
             $DetallesPedidos = new DetallesPedidos();
+            // Accessing $item->price within the loop
             $DetallesPedidos->precio = $item->price;
             $DetallesPedidos->cantidad = $item->qty;
             $DetallesPedidos->producto_id = $item->id;
             $DetallesPedidos->pedido_id = $pedidos->id;
             $DetallesPedidos->descripcion = $item->options->descripcion;
-
             $DetallesPedidos->save();
+            
         }
+
+
     }
+    
 
     //     self::ordenMakeNotification($pedidos);
     // }
@@ -146,17 +149,19 @@ class CarritoController extends Controller
     {
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
         $sessionId = $request->get('session_id');
-
         try {
             $session = \Stripe\Checkout\Session::retrieve($sessionId);
             if (!$session) {
                 dd('session var no encontrada');
                 throw new NotFoundHttpException;
             }
+            $this->guardarCarrito($session->id);
+            $pedidos = pedidos::where('session_id', $session->id)->first();
         } catch (\Throwable $th) {
             throw new NotFoundHttpException();
             dd('error en try');
         }
+
         return redirect()->route('ver.productos')->with('success', 'success');
     }
     public function cancel()

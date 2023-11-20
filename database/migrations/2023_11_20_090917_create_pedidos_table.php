@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->decimal('total', 10, 2);
             $table->string('status')->default('PENDIENTE');
-            $table->string('descripcion');
+            $table->string('name');
+            $table->string('email');
             $table->string('session_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

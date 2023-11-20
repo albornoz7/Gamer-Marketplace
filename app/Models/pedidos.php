@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Producto;
+use App\Models\productos;
 use Cart;
 
 class pedidos extends Model
@@ -15,17 +15,22 @@ class pedidos extends Model
         'user_id',
         'created_at',
         'session_id',
-        'estado'
+        'status',
+        
+        
     ];
-    /* public function productos()
+    public function productos()
     {
-        return $this->belongsToMany(Producto::class, 'detalles_productos')
-            ->withPivot(['cantidad', 'precio', 'descripcion','nombre']);
+        return $this->belongsToMany(productos::class, 'detalles_pedido')
+            ->withPivot(['cantidad', 'precio', 'descripcion']);
     }
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    } */
+    } 
+    public function total($subtotal)
+    {
 
+    }
 }

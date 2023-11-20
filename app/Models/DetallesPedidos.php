@@ -12,20 +12,20 @@ class DetallesPedidos extends Model
     use HasFactory;
     protected $table = 'detalles_pedidos';
     protected $fillable = [
-        'pedidos_id',
+        'pedido_id',
         'producto_id',
         'cantidad',
-        'descripcion',
         'precio',
+        'descripcion',
     ];
-    /* public function pedidos()
+    public function pedidos()
     {
-        return $this->belongsTo(Orden::class, 'pedido_id');
+        return $this->belongsTo(pedidos::class, 'pedido_id');
     }
 
     public function productos()
     {
-        return $this->belongsTo(Producto::class, 'producto_id');
-    } */
+        return $this->belongsTo(productos::class, 'producto_id');
+    } 
 
 }
