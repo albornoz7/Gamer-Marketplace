@@ -64,7 +64,13 @@ class CarritoController extends Controller
     public function eliminar(Request $request){
         Cart::remove($request->id);
         return back()->with("success","Producto eliminado");
+        
+    }public function eliminarCarrito(Request $request)
+    {
+        Cart::destroy();
+        return redirect()->back()->with("eliminarCarrito", "carrito eliminao");
     }
+
 
     public function guardarCarrito($session_id)
     {
@@ -95,14 +101,6 @@ class CarritoController extends Controller
 
     }
     
-
-    //     self::ordenMakeNotification($pedidos);
-    // }
-    // static function ordenMakeNotification($pedidos)
-    // {
-    //     // event(new OrdenEvent($orden));
-
-    // }
 
     public function session()
     {
@@ -157,6 +155,16 @@ class CarritoController extends Controller
             }
             $this->guardarCarrito($session->id);
             $pedidos = pedidos::where('session_id', $session->id)->first();
+            if (!$pedidos) {
+                dd('orden no encontrada');
+                throw new NotFoundHttpException;
+            }
+
+            if ($pedidos->status == "PENDIENTE") {
+                $pedidos->status = "PAGADO";
+                $pedidos->save();
+                Cart::destroy();
+            }
         } catch (\Throwable $th) {
             throw new NotFoundHttpException();
             dd('error en try');

@@ -73,7 +73,7 @@
                                 <td
                                     class="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
                                     <div class="inline-flex items-center gap-x-3">
-                                        <span>#{{ $orden->id }}</span>
+                                        <span>#{{ $orden->pedidos->id }}</span>
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -152,8 +152,6 @@
 
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                     <div class="flex items-center gap-x-2">
-                                        <img class="object-cover w-8 h-8 rounded-full"
-                                            src="{{ $orden->pedidos->user->foto }}" alt="">
                                         <div>
                                             <h2 class="text-sm font-medium text-gray-800 dark:text-white ">
                                                 {{ $orden->pedidos->user->name }}
@@ -164,14 +162,12 @@
                                     </div>
                                 </td>
                                 <td class="px-5 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                     @foreach ($orden->productos as $producto)
-                                        <p class="underline underline-offset-8 uppercase "> {{ $producto }}</p>
+                                        <p class="underline underline-offset-8 uppercase "> {{ $orden->productos->nombre }}</p>
                                         <br>
-                                    @endforeach 
 
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                    ${{ number_format($orden->total, 0, ',', '.') }}
+                                    ${{$orden->total }}
                                 </td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
 

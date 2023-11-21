@@ -58,6 +58,7 @@ Route::get('/vercarrito', [CarritoController::class, 'vercarrito'])->name('verca
 Route::get('/incrementar/{id}', [CarritoController::class, 'incrementarcantidad'])->name('incrementarcantidad');
 Route::get('/diminuir/{id}', [CarritoController::class, 'disminuircantidad'])->name('disminuircantidad');
 Route::get('/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('eliminar');
+Route::get('/eliminarcarrito', [CarritoController::class,'eliminarCarrito'])->name('eliminarcarrito');
 Route::get('/confirmarcarrito', [CarritoController::class, 'confirmarcarrito'])->name('confirmarcarrito');
 
 /* Route::controller(ProductosController::class)->group(function(){

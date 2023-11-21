@@ -68,7 +68,7 @@
             @endforeach
         </tbody>
     <td> <p class="px-6 py-4 font-semibold text-gray-900 dark:text-white">Total:{{Cart::total()}}</p></td>
-    <td> <p class="px-6 py-4 font-semibold text-gray-900 dark:text-white"><a href="#">Vaciar carrito</a></td>
+    <td> <p class="px-6 py-4 font-semibold text-gray-900 dark:text-white"><a href="{{route('eliminarcarrito')}}">Vaciar carrito</a></td>
     </table>
         </div>
         <div class="grow-0 h-14 ...">
