@@ -146,10 +146,7 @@
                                         @endswitch
                                         <h2 class="text-sm font-normal">{{ $orden->productos->status }}</h2>
                                     </div>
-
-
                                 </td>
-
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                     <div class="flex items-center gap-x-2">
                                         <div>
@@ -157,7 +154,7 @@
                                                 {{ $orden->pedidos->user->name }}
                                             </h2>
                                             <p class="text-xs font-normal text-gray-600 dark:text-gray-400">
-                                                {{ $orden->pedidos->user->email }}</p>
+                                                {{ $orden->pedidos->users }}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -167,12 +164,12 @@
 
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                    ${{$orden->total }}
+                                    ${{$orden->pedidos->total }}
                                 </td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
 
                                     <div class="flex items-center gap-x-6">
-                                        <form action="{{ route('detalles.pedidos', ['id' => $orden->id]) }}">
+                                        <form action="{{ route('detalles', ['id' => $orden->id]) }}">
                                             <input type="hidden" value="{{ $orden->id }}">
                                             <button
                                                 class="text-green-500 transition-colors duration-200 hover:text-gray-500 focus:outline-none">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DetallesPedidos;
 use Gloudemans\Shoppingcart\Cart;
+use App\Models\User;
+use App\Models\productos;
 
 class PedidosController extends Controller
 {

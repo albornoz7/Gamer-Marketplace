@@ -76,5 +76,5 @@ Route::post('/webhook', [CarritoController::class, 'webhook'])->name('webhook');
 Route::get('/cancel', [CarritoController::class, 'cancel'])->name('cancel');
 
 Route::get('/pedidos', [PedidosController::class, 'index'])->name('pedidos');
-Route::get('/pedidos/detalles/{id}', [PedidosController::class, 'show'])->name('detalles.pedidos');
+Route::get('/detalles/detalles/{id}', [PedidosController::class, 'show'])->name('detalles');
 Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('pedido.estado');

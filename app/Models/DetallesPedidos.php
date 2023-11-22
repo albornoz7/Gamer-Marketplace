@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\productos;
 use App\Models\pedidos;
+use Cart;
 
 class DetallesPedidos extends Model
 {
@@ -27,5 +28,10 @@ class DetallesPedidos extends Model
     {
         return $this->belongsTo(productos::class, 'producto_id');
     } 
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 
 }
