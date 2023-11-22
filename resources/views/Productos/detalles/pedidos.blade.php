@@ -179,7 +179,7 @@
                                         <button
                                             class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none"
                                             onclick="cambiarproductos->status({{ $orden->id }})">
-                                            Cambiar productos->status
+                                            Cambiar productos
                                         </button>
                                     </div>
 
