@@ -160,7 +160,7 @@ class CarritoController extends Controller
                 throw new NotFoundHttpException;
             }
 
-            if ($pedidos->status == "Pendiente") {
+            if ($pedidos->status == "PENDIENTE") {
                 $pedidos->status = "Vendido";
                 $pedidos->save();
                 Cart::destroy();
