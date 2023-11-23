@@ -77,75 +77,15 @@
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                    {{ \Carbon\Carbon::parse($orden->created_at)->formatLocalized('%d %B %Y %I:%M %p') }}
+                                    {{\Carbon\Carbon::parse($orden->created_at)->formatLocalized('%d %B %Y %I:%M %p') }}
                                 </td>
                                 <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    <div
-                                        class="inline-flex items-center px-3 py-1 rounded-full gap-x-2
-                    @switch(true)
-                    @case($orden->productos->status == 'PAGADO')
-                    text-cyan-500 bg-blue-100/60 dark:bg-gray-800
-                        @break
-
-                    @case($orden->status == 'CANCELADO')
-                        text-red-500 bg-red-200 dark:bg-gray-800
-                        @break
-                    @case($orden->productos->status == 'PENDIENTE')
-                        text-gray-500 bg-gray-200 dark:bg-gray-800
-                        @break
-                    @case($orden->productos->status == 'ACEPTADO')
-                        text-blue-500 bg-blue-100/60 dark:bg-gray-800
-                        @break
-                    @case($orden->productos->status == 'COMPLETADO')
-                        text-green-500 bg-green-100/60 dark:bg-gray-800
-                        @break
-                    @endswitch
-                    ">
-                                        @switch(true)
-                                            @case($orden->productos->status == 'PAGADO')
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            @break
-
-                                            @case($orden->productos->status == 'COMPLETADO')
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="1.5" stroke="currentColor" width="12" height="12">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M4.5 12.75l6 6 9-13.5" />
-                                                </svg>
-                                            @break
-
-                                            @case($orden->productos->status == 'ACEPTADO')
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                    stroke-width="1.5" stroke="currentColor" width="12" height="12">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M4.5 12.75l6 6 9-13.5" />
-                                                </svg>
-                                            @break
-
-                                            @case($orden->productos->status == 'PENDIENTE')
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M4.5 7L2 4.5M2 4.5L4.5 2M2 4.5H8C8.53043 4.5 9.03914 4.71071 9.41421 5.08579C9.78929 5.46086 10 5.96957 10 6.5V10"
-                                                        stroke="#667085" stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            @break
-
-                                            @case($orden->productos->status == 'CANCELADO')
-                                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M9 3L3 9M3 3L9 9" stroke="currentColor" stroke-width="1.5"
-                                                        stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            @break
-                                        @endswitch
-                                        <h2 class="text-sm font-normal">{{ $orden->productos->status }}</h2>
+                                    <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2">
+                                        <h2 id="estadoProducto" class="text-sm font-normal">{{ $orden->pedidos->status }}</h2>
                                     </div>
+
+                                        
+                                    
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                     <div class="flex items-center gap-x-2">
@@ -176,11 +116,15 @@
                                                 Ver Detalles
                                             </button>
                                         </form>
-                                        <button
-                                            class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none"
-                                            onclick="cambiarproductos->status({{ $orden->id }})">
-                                            Cambiar productos
-                                        </button>
+                                        @if ($orden->pedidos->status == 'PAGADO')
+                                            <a href="{{route('change.status',$orden->pedidos->id)}}"  class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
+                                                Cambiar Estado
+                                            </a>
+                                        @else
+                                            <a href="{{route('change.status',$orden->pedidos->id)}}"  class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
+                                                Cambiar Estado
+                                            </a>
+                                        @endif
                                     </div>
 
                                 </td>
@@ -193,6 +137,38 @@
             @endif
         </div>
     </section>
+    <script>
+        function cambiarEstado(id) {
+            // Puedes mostrar una ventana de confirmación al usuario antes de actualizar el estado
+            if (confirm("¿Estás seguro de que deseas cambiar el estado del producto?")) {
+                // Realiza una petición al controlador para actualizar el estado
+                fetch(`/actualizarEstado/${id}`, {
+                    method: 'POST',
+                    body: JSON.stringify({ status: 'nuevo_estado' }), // Reemplaza 'nuevo_estado' con el estado deseado
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Asegúrate de incluir el token CSRF si estás utilizando Laravel
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Aquí puedes realizar alguna acción adicional después de actualizar el estado, como mostrar un mensaje de éxito
+                    alert("El estado del producto ha sido actualizado correctamente.");
+                })
+                .catch(error => {
+                    // Maneja cualquier error que pueda ocurrir durante la actualización del estado
+                    console.error('Error:', error);
+                });
+            }
+            // Después de actualizar el estado del producto, obtén el nuevo estado
+            var nuevoEstado = "Pagado";
 
+            // Selecciona el elemento <h2> por su identificador
+            var estadoProducto = document.getElementById("estadoProducto");
+
+            // Actualiza el contenido del elemento <h2> con el nuevo estado
+            estadoProducto.textContent = nuevoEstado;
+        }
+    </script>
 
 @endsection

@@ -161,7 +161,7 @@ class CarritoController extends Controller
             }
 
             if ($pedidos->status == "PENDIENTE") {
-                $pedidos->status = "Vendido";
+                $pedidos->status = "PAGADO";
                 $pedidos->save();
                 Cart::destroy();
             }

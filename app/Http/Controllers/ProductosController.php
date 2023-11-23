@@ -24,27 +24,27 @@ class ProductosController extends Controller
         $categoria = $request->input('categoria');
         switch ($categoria) {
             case 'play':
-                $productos = Productos::where('categoria', 'PlayStation')->get();
+                $productos = Productos::where('categoria', 'PlayStation')->where('status', 'En Venta')->get();
                 // Mostrar los productos encontrados
                 return view('productos.categorias', compact('productos'));
                 break;
             case 'xbox':
-                    $productos = Productos::where('categoria', 'Xbox')->get();
+                    $productos = Productos::where('categoria', 'Xbox')->where('status', 'En Venta')->get();
                     // Mostrar los productos encontrados
                     return view('productos.categorias', compact('productos'));
                 break;
             case 'nintendo':
-                $productos = Productos::where('categoria', 'Nintendo')->get();
+                $productos = Productos::where('categoria', 'Nintendo')->where('status', 'En Venta')->get();
                 // Mostrar los productos encontrados
                 return view('productos.categorias', compact('productos'));
                 break;
             case 'perifericos':
-                    $productos = Productos::where('categoria', 'Perifericos')->get();
+                    $productos = Productos::where('categoria', 'Perifericos')->where('status', 'En Venta')->get();
                     // Mostrar los productos encontrados
                     return view('productos.categorias', compact('productos'));
                 break;
             case 'otros':
-                    $productos = Productos::where('categoria', 'Otros')->get();
+                    $productos = Productos::where('categoria', 'Otros')->where('status', 'En Venta')->get();
 
                     // Mostrar los productos encontrados
                     return view('productos.categorias', compact('productos'));
@@ -67,7 +67,7 @@ class ProductosController extends Controller
 
     public function index()
     {
-        $productos = productos::latest()->paginate(5); // Recuperar todos los registros de la tabla 'productos'
+        $productos = productos::latest()-8>paginate(5); // Recuperar todos los registros de la tabla 'productos'
         return view('Productos.Crud.ver', compact('productos')); // Pasar los datos a la vista
     }
 
@@ -86,14 +86,13 @@ class ProductosController extends Controller
     {
         
         $request->validate([
-        'nombre'=>'required',
-        'descripcion'=>'required',
-        'cantidad'=>'required',
-        'precio'=>'required',
-        'status'=>'required',
-        'due_date'=>'required', 
-        'categoria'=>'required',
-        
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'cantidad'=>'required',
+            'precio'=>'required',
+            'status'=>'required',
+            'due_date'=>'required', 
+            'categoria'=>'required',
         ]);
 
         
@@ -184,12 +183,12 @@ class ProductosController extends Controller
         $foto = $producto->foto; // Obtén el nombre de la foto antes de eliminar el producto
     
         $mensaje = 'Producto eliminado con éxito';
-        productos::destroy($id);
-    
-        $rutaFoto = public_path($foto); // Ruta completa de la foto
+        $producto->status = "Inhabilitado";
+            $producto->save();
+/*         $rutaFoto = public_path($foto); // Ruta completa de la foto
         if(file_exists($rutaFoto)) {
             unlink($rutaFoto); // Elimina la foto de la carpeta
-        }
+        } */
     
         return redirect()->back()->with('mensaje', $mensaje);
     }

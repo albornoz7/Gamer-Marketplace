@@ -77,4 +77,5 @@ Route::get('/cancel', [CarritoController::class, 'cancel'])->name('cancel');
 
 Route::get('/pedidos', [PedidosController::class, 'index'])->name('pedidos');
 Route::get('/detalles/detalles/{id}', [PedidosController::class, 'show'])->name('detalles');
-Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('pedido.estado');
+Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('estado');
+Route::get('estado/pedido/{id}',[PedidosController::class, 'updateEstado'])->name('change.status');

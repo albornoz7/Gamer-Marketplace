@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DetallesPedidos;
+use App\Models\pedidos;
 use Gloudemans\Shoppingcart\Cart;
 use App\Models\User;
 use App\Models\productos;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PedidosController extends Controller
 {
     public function index(Request $request)
     {
-
-        $pedidos = DetallesPedidos::with('productos', 'pedidos')->paginate(10);
+        $userId = Auth::id(); // Obtener el ID del usuario autenticado
+    
+        $pedidos = DetallesPedidos::with('productos', 'pedidos')
+            ->whereHas('productos', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->paginate(5);
+    
         return view('productos.detalles.pedidos', compact('pedidos'));
     }
 
@@ -27,14 +36,15 @@ class PedidosController extends Controller
         return view('productos.detalles.detalles', compact('pedido'));
     }
 
-    public function updateEstado($id, $status)
+    public function updateEstado($id)
     {
-        $pedidos = DetallesPedidos::findOrFail($id);
-        $pedidos->estado = $status;
-        $pedidos->save();
-
-        /*         self::ordenStatusMakeNotification($orden);
- */
-        return response()->json(['success' => true]);
+        $pedido = pedidos::find($id);
+        if ($pedido->status == 'PAGADO'){
+            DB::table('pedidos')->where('id',$id)->update(['status'=>'PENDIENTE']);
+            return redirect()->back();
+        } else {
+            DB::table('pedidos')->where('id',$id)->update(['status'=>'PAGADO']);
+            return redirect()->back();
+        }
     }
 }
