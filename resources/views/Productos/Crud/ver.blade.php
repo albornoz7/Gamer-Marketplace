@@ -79,6 +79,7 @@
         @method('DELETE')
           
         <td class="px-6 py-4">
+
           <div class="flex justify-end gap-4">
           <button>
               <svg
@@ -117,8 +118,21 @@
             </a>
           </div>
         </td>
+        <td>
+          <form action="{{route('habilitar', $producto->id)}}" method="post">
+            @csrf
+            <input type="submit" value="Habilitar">
+        </form>
+        
+        <form action="{{route('inabilitar',$producto->id)}}" method="post">
+            @csrf
+            <input type="submit" value="Inhabilitar">
+            
+        </form>
+        </td>
       </tr>
       @endif
+
       @endforeach
     </tbody>
   </table>

@@ -42,6 +42,8 @@ Route::controller(ProductosController::class)->group(function(){
     Route::get('/Editar_Producto/{id}', 'edit')->name('editar.producto')->middleware('auth');
     Route::put('/Actualizar/{id}', 'update')->name('actualizar.producto')->middleware('auth');
     Route::delete('/Eliminar_Producto/{id}', 'destroy')->name('eliminar.producto')->middleware('auth');
+    Route::post('/habilitar-producto/{id}', 'habilitar')->name('habilitar')->middleware('auth');
+    Route::post('/inhabilitar-producto/{id}', 'inhabilitar')->name('inabilitar')->middleware('auth');
 });
 
 Route::controller(VendedorController::class)->group(function(){

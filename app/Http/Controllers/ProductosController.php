@@ -24,27 +24,27 @@ class ProductosController extends Controller
         $categoria = $request->input('categoria');
         switch ($categoria) {
             case 'play':
-                $productos = Productos::where('categoria', 'PlayStation')->where('status', 'En Venta')->get();
+                $productos = Productos::where('categoria', 'PlayStation')->where('status', 'Habilitado')->get();
                 // Mostrar los productos encontrados
                 return view('productos.categorias', compact('productos'));
                 break;
             case 'xbox':
-                    $productos = Productos::where('categoria', 'Xbox')->where('status', 'En Venta')->get();
+                    $productos = Productos::where('categoria', 'Xbox')->where('status', 'Habilitado')->get();
                     // Mostrar los productos encontrados
                     return view('productos.categorias', compact('productos'));
                 break;
             case 'nintendo':
-                $productos = Productos::where('categoria', 'Nintendo')->where('status', 'En Venta')->get();
+                $productos = Productos::where('categoria', 'Nintendo')->where('status', 'Habilitado')->get();
                 // Mostrar los productos encontrados
                 return view('productos.categorias', compact('productos'));
                 break;
             case 'perifericos':
-                    $productos = Productos::where('categoria', 'Perifericos')->where('status', 'En Venta')->get();
+                    $productos = Productos::where('categoria', 'Perifericos')->where('status', 'Habilitado')->get();
                     // Mostrar los productos encontrados
                     return view('productos.categorias', compact('productos'));
                 break;
             case 'otros':
-                    $productos = Productos::where('categoria', 'Otros')->where('status', 'En Venta')->get();
+                    $productos = Productos::where('categoria', 'Otros')->where('status', 'Habilitado')->get();
 
                     // Mostrar los productos encontrados
                     return view('productos.categorias', compact('productos'));
@@ -67,7 +67,8 @@ class ProductosController extends Controller
 
     public function index()
     {
-        $productos = productos::latest()-8>paginate(5); // Recuperar todos los registros de la tabla 'productos'
+        $user_id = Auth()->user()->id;
+        $productos = productos::where('user_id', $user_id)->paginate(5); // Recuperar todos los registros de la tabla 'productos'
         return view('Productos.Crud.ver', compact('productos')); // Pasar los datos a la vista
     }
 
@@ -123,7 +124,8 @@ class ProductosController extends Controller
     public function show(productos $productos)
     {   
         $user_id = Auth::id();
-        $productos = productos::where('user_id', "!=", $user_id)->get(); // Recuperar todos los registros de la tabla 'productos'
+
+        $productos = productos::where('user_id', "!=", $user_id)->where('status', 'Habilitado')->get(); // Recuperar todos los registros de la tabla 'productos'
         return view('productos.categorias', compact('productos'));
     }
 
@@ -178,20 +180,29 @@ class ProductosController extends Controller
     return redirect()->route('ver.lista.productos');
 }
 
-    public function destroy($id){
-        $producto = productos::find($id);
-        $foto = $producto->foto; // Obtén el nombre de la foto antes de eliminar el producto
-    
-        $mensaje = 'Producto eliminado con éxito';
-        $producto->status = "Inhabilitado";
-            $producto->save();
-/*         $rutaFoto = public_path($foto); // Ruta completa de la foto
-        if(file_exists($rutaFoto)) {
-            unlink($rutaFoto); // Elimina la foto de la carpeta
-        } */
-    
-        return redirect()->back()->with('mensaje', $mensaje);
-    }
+public function destroy($id){
+    $producto = productos::find($id);
+    $foto = $producto->foto; // Obtén el nombre de la foto antes de eliminar el producto
+    $mensaje = 'Producto eliminado con éxito';
+    $producto->status = "Inhabilitado";
+    $producto->save();
+    return redirect()->back()->with('mensaje', $mensaje);
+}
+public function habilitar($id){
+    $producto = productos::find($id);
+    $producto->status = "Habilitado";
+    $producto->save();
+    return redirect()->back()->with('mensaje', 'Producto habilitado con éxito');
+
+
+}
+
+public function inhabilitar($id){
+    $producto = productos::find($id);
+    $producto->status = "Inhabilitado";
+    $producto->save();
+    return redirect()->back()->with('mensaje', 'Producto inhabilitado con éxito');
+}
 }
 
 //     public function obtenerProductosUsuario()
