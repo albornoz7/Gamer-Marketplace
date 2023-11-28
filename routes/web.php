@@ -52,7 +52,27 @@ Route::controller(VendedorController::class)->group(function(){
 });
 
 
-Route::get('/Wiki', [WikiController::class, 'view'])->name('wiki');
+Route::get('/Wiki', [WikiController::class, 'wiki'])->name('wiki');
+Route::get('/admin', [WikiController::class, 'crear'])->name('nconsola');
+Route::get('/mostrar', [WikiController::class, 'show'])->name('verconsola');
+Route::post('/admin',[WikiController::class, 'store'])->name('nuevaconsola');
+Route::post('Wiki', [WikiController::class, 'nombreConsola'])->name('wiki.vista');
+Route::get('editar/{id}', [WikiController::class, 'edit'])->name('editarconsola');
+Route::put('actualizar-wiki/{id}', [WikiController::class, 'update'])->name('actualizarconsola');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::post('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem');
 

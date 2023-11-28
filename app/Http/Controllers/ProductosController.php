@@ -61,7 +61,6 @@ class ProductosController extends Controller
     }
 
     public function wiki(){
-        
         return view('wiki.enciclo');
     }
 

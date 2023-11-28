@@ -27,19 +27,35 @@
                             <a href="{{route('ver.productos')}}"> <h2 class="font-normal text-2xl leading-6 text-gray-800">Gamers MarketPlace</h2></a>
                         </div>
 
-                        <!-- For medium and plus sized devices -->
-                        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-                            <ul class="hidden md:flex flex-auto space-x-2">
-                                <li onclick="selected()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">HISTORIA</li>
-                                <li onclick="selected()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-gray-600 border border-white bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">ATARI</li>
-                                <li onclick="selected()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-gray-600 border border-white bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">ARCADES</li>
-                                <li onclick="selected()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-gray-600 border border-white bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">NINTENDO</li>
-                                <li onclick="selected()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-gray-600 border border-white bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">SEGA</li>
-                                <li onclick="selected()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-gray-600 border border-white bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">PLAYSTATION</li>
-                                <li onclick="selected()" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-gray-600 border border-white bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">XBOX</li>
-
-                            </ul>
-                        </div>
+                        <form method="POST" action="{{ route('wiki.vista')}}">
+                            @csrf <!-- Agrega el token CSRF para la seguridad -->
+                        
+                            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
+                                <ul class="hidden md:flex flex-auto space-x-2">
+                                    <li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">
+                                        <button type="submit" name="nombre_consola" value="historia">HISTORIA</button>
+                                    </li>
+                                    <li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">
+                                        <button type="submit" name="nombre_consola" value="playstation">PLAYSTATION</button>
+                                    </li>
+                                    <li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">
+                                        <button type="submit" name="nombre_consola" value="xbox">XBOX</button>
+                                    </li>
+                                    <li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">
+                                        <button type="submit" name="nombre_consola" value="nintendo">NINTENDO</button>
+                                    </li>
+                                    <li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">
+                                        <button type="submit" name="nombre_consola" value="sega">SEGA</button>
+                                    </li>
+                                    <li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">
+                                        <button type="submit" name="nombre_consola" value="atari">ATARI</button>
+                                    </li>
+                                    <li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">
+                                        <button type="submit" name="nombre_consola" value="arcade">ARCADE</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
                     </nav>
                     <!-- for smaller devcies -->
 

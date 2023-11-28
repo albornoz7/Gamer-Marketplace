@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('consolawiki', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_consola');
-            $table->string('descripcion_consola');
+            $table->longText('descripcion_consola');
             $table->string('foto')->nullable();
             $table->timestamps();
         });
