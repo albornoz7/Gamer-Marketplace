@@ -33,5 +33,9 @@ class DetallesPedidos extends Model
 {
     return $this->belongsTo(User::class);
 }
+public function vendedor()
+{
+    return $this->belongsTo(vendedor::class);
+}
 
 }

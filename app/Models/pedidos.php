@@ -21,10 +21,13 @@ class pedidos extends Model
     ];
     public function productos()
     {
-        return $this->belongsToMany(productos::class, 'detalles_pedido')
-            ->withPivot(['cantidad', 'precio', 'descripcion']);
+        return $this->belongsToMany(DetallesPedidos::class, 'detalles_pedidos')->withPivot(['cantidad', 'precio', 'descripcion']);
     }
 
+    public function vendedor()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -43,8 +43,8 @@
                     <div class="relative z-0 w-full mb-6 group">
                         <strong >(inicial):</strong>
                         <select name="status" id="">
-                            <option value="En Venta">En Venta</option>
-                            <option value="Pendiente">Pendiente</option>
+                            <option value="Habilitado">En Venta</option>
+                            <option value="Inhabilitado">Pendiente</option>
                             <option value="Vendido">Vendido</option>
                         </select>
                     </div>

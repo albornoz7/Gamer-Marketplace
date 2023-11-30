@@ -35,6 +35,7 @@ class PedidosController extends Controller
 
         return view('productos.detalles.detalles', compact('pedido'));
     }
+    
 
     public function updateEstado($id)
     {
@@ -47,4 +48,16 @@ class PedidosController extends Controller
             return redirect()->back();
         }
     }
+    public function detallesPedidosUsuarios(Request $request)
+    {
+        $userId = Auth::id(); // Obtener el ID del usuario autenticado
+        //$pedidos = DetallesPedidos::with('productos', 'pedidos');
+        $pedidos = DetallesPedidos::with(['productos', 'pedidos'])
+        ->whereHas('pedidos', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })
+        ->paginate(5);
+        return view('productos.detalles.detallesC', compact('pedidos'));
+    }
+
 }

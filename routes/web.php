@@ -8,6 +8,7 @@ use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,26 +54,13 @@ Route::controller(VendedorController::class)->group(function(){
 
 
 Route::get('/Wiki', [WikiController::class, 'wiki'])->name('wiki');
-Route::get('/admin', [WikiController::class, 'crear'])->name('nconsola');
+Route::get('/admin', [WikiController::class, 'crear'])->name('nconsola')->middleware('auth');
 Route::get('/mostrar', [WikiController::class, 'show'])->name('verconsola');
+Route::get('/mostrar',[WikiController::class,'mostrarwiki'])->name('mostrar')->middleware('auth');
 Route::post('/admin',[WikiController::class, 'store'])->name('nuevaconsola');
 Route::post('Wiki', [WikiController::class, 'nombreConsola'])->name('wiki.vista');
-Route::get('editar/{id}', [WikiController::class, 'edit'])->name('editarconsola');
-Route::put('actualizar-wiki/{id}', [WikiController::class, 'update'])->name('actualizarconsola');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('editar/{id}', [WikiController::class, 'edit'])->name('editarconsola')->middleware('auth');
+Route::put('actualizar-wiki/{id}', [WikiController::class, 'update'])->name('actualizarconsola')->middleware('auth');
 
 Route::post('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem');
 
@@ -97,7 +85,14 @@ Route::get('/success', [CarritoController::class, 'success'])->name('success');
 Route::post('/webhook', [CarritoController::class, 'webhook'])->name('webhook');
 Route::get('/cancel', [CarritoController::class, 'cancel'])->name('cancel');
 
-Route::get('/pedidos', [PedidosController::class, 'index'])->name('pedidos');
-Route::get('/detalles/detalles/{id}', [PedidosController::class, 'show'])->name('detalles');
-Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('estado');
-Route::get('estado/pedido/{id}',[PedidosController::class, 'updateEstado'])->name('change.status');
+Route::get('/pedidos', [PedidosController::class, 'index'])->name('pedidos')->middleware('auth');
+Route::get('/detalles/detalles/{id}', [PedidosController::class, 'show'])->name('detalles')->middleware('auth');
+Route::get('detallesc/', [PedidosController::class, 'detallesPedidosUsuarios'])->name('detallesc')->middleware('auth');
+Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('estado')->middleware('auth');
+Route::get('estado/pedido/{id}',[PedidosController::class, 'updateEstado'])->name('change.status')->middleware('auth');
+
+Route::get('/verusuarios',[AdminController::class,'mostrarUsuarios'])->name('verusuarios')->middleware('auth');
+Route::delete('/eliminar_usuario/{id}',[AdminController::class,'destruir'])->name('eliminar_usuario')->middleware('auth');
+
+
+

@@ -19,7 +19,7 @@
                     @csrf
                 <div class="space-y-6">
                     {{-- <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text"  placeholder="Nombre">
+                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="user_id" placeholder="Nombre">
                 </div> --}}
                 <div class="space-y-6">
                     {{-- <div class="">
@@ -42,7 +42,7 @@
                         
                 <div class="relative z-0 w-full mb-6 group">
                     <div class="relative z-0 w-full mb-6 group">
-                        <select name="categoria" id="">
+                        <select name="metodo_de_pago" id="">
                             <option value="PlayStation">Bancolombia</option>
                             <option value="Xbox">Nequi</option>
                             <option value="Nintendo">Efectivo</option>

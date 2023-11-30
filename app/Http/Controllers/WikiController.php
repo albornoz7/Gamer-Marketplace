@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+
 class WikiController extends Controller
 {
 
@@ -132,5 +133,14 @@ class WikiController extends Controller
     
         return redirect()->route('wiki.vista');
     }
+    public function mostrarwiki()
+    {
+        $user_id = Auth()->user()->id;
+        $consolawiki = consolawiki::all(); // Recuperar todos los registros de la tabla 'productos'
+        // dd(consolawiki::all());
+        
+        return view('admin.mostrar', compact('consolawiki')); // Pasar los datos a la vista
+    }
+
 
 }
