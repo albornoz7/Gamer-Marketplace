@@ -53,11 +53,11 @@
                         </svg>
                     </div>
                 </button>
-                <div data-popover id="popover-click" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                <div data-popover id="popover-click" role="tooltip" class="absolute z-10 invisible inline-block w-98 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                     @if (count(Cart::content()))
-                    <div  class="relative overflow-x-auto w-72">
+                    <div  class="relat overflow-x-auto w-full">
                         
-                        <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                        <table class="text-sm  rtl:text-right text-gray-500 dark:text-gray-400 ">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 rounded-s-lg">
@@ -69,16 +69,18 @@
                                     <th scope="col" class="px-6 py-3 rounded-e-lg">
                                         Precio
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Acciones 
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (Cart::content() as $item)
                                 <tr class="bg-white dark:bg-gray-800">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $item->name }}
-                                    </th>
+                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $item->name }}
+                                            </th>
                                             <td class="px-6 py-4">{{ $item->qty}} </td>
-                                            <td class="px-6 py-4">{{ $item->description}} </td>
                                             <td class="px-6 py-4">{{ number_format($item->qty * $item->price, 2) }}</td>
                                             <td class="px-6 py-4">
                                                 <a href="{{route('eliminar',$item->rowId)}}"  class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</a>
@@ -89,7 +91,15 @@
                             <tfoot>
                                 <tr class="font-semibold text-gray-900 dark:text-white">
                                     <td class="px-6 py-3"></td>
-                                    <td class="px-6 py-3"><a href="/vercarrito">carrito</a></td>
+                                    <td>
+                                        <a href="{{route('vercarrito')}}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <!-- Heroicon name: solid/mail -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-ml-1 mr-2 h-5 w-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                            </svg>
+                                                                                        Carrito
+                                        </a>
+                                    </td>
                                     <th scope="row" class="px-6 py-3 text-base">Total: {{ Cart::total() }}</th>
                                     
                                 </tr>
@@ -138,9 +148,12 @@
                                 @endif
 
                                 @if(Auth::user()->rol_id == 3)
-                                <a href="{{ route('nconsola') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Agregar Nuevo Regisro en la Enciclopedia</a>
+                                {{-- <a href="{{ route('nconsola') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Agregar Nuevo Regisro en la Enciclopedia</a> --}}
                                 <a href="{{ route('mostrar') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Enciclopedia</a>
-                                <a href="{{ route('verusuarios') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Compradores</a>
+                                <a href="{{ route('verusuarios') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Usuarios</a>
+                                <a href="{{ route('verproductos') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Productos</a>
+                                <a href="{{ route('crear.producto') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vender</a>
+
 
                                 
 

@@ -54,7 +54,7 @@ Route::controller(VendedorController::class)->group(function(){
 
 
 Route::get('/Wiki', [WikiController::class, 'wiki'])->name('wiki');
-Route::get('/admin', [WikiController::class, 'crear'])->name('nconsola')->middleware('auth');
+// Route::get('/admin', [WikiController::class, 'crear'])->name('nconsola')->middleware('auth');
 Route::get('/mostrar', [WikiController::class, 'show'])->name('verconsola');
 Route::get('/mostrar',[WikiController::class,'mostrarwiki'])->name('mostrar')->middleware('auth');
 Route::post('/admin',[WikiController::class, 'store'])->name('nuevaconsola');
@@ -91,6 +91,7 @@ Route::get('detallesc/', [PedidosController::class, 'detallesPedidosUsuarios'])-
 Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('estado')->middleware('auth');
 Route::get('estado/pedido/{id}',[PedidosController::class, 'updateEstado'])->name('change.status')->middleware('auth');
 
+Route::get('/verproductos',[AdminController::class,'mostrarProductos'])->name('verproductos')->middleware('auth');
 Route::get('/verusuarios',[AdminController::class,'mostrarUsuarios'])->name('verusuarios')->middleware('auth');
 Route::delete('/eliminar_usuario/{id}',[AdminController::class,'destruir'])->name('eliminar_usuario')->middleware('auth');
 
