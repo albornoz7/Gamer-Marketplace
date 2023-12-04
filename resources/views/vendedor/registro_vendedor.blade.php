@@ -18,13 +18,13 @@
                 <form action="{{route('guardar_nuevo_vendedor')}}" method="POST">
                     @csrf
                 <div class="space-y-6">
-                    {{-- <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="user_id" placeholder="Nombre">
-                </div> --}}
+                <div class="">
+                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" value="{{ Auth::user()->name }}" readonly>
+                </div>
                 <div class="space-y-6">
-                    {{-- <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text"  placeholder="Correo">
-                </div> --}}
+                    <div class="">
+                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text"  value="{{ Auth::user()->email }}" readonly>
+                </div>
                 <div class="space-y-6">
                     <div class="">
                         <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="celular" placeholder="Celular">

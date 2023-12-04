@@ -31,12 +31,12 @@ Route::controller(LoginController::class)->group(function() {
     Route::get('/login', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::post('/logout', 'logout')->name('logout');
-});
+})->middleware('preventBack');
 
 // Rutas de los productos
 Route::controller(ProductosController::class)->group(function(){
     Route::match(['get','post'],'/Categorias', 'categoria')->name('categoria');
-    Route::get('/Productos', 'show')->name('ver.productos');
+    Route::get('/Productos', 'show') ->middleware('auth')->name('ver.productos');
     Route::get('/Lista_Productos', 'index')->name('ver.lista.productos')->middleware('auth');
     Route::get('/Crear_Producto', 'create')->name('crear.producto')->middleware('auth');
     Route::post('/Guardar','store')->name('guardar.producto')->middleware('auth');
@@ -45,31 +45,31 @@ Route::controller(ProductosController::class)->group(function(){
     Route::delete('/Eliminar_Producto/{id}', 'destroy')->name('eliminar.producto')->middleware('auth');
     Route::post('/habilitar-producto/{id}', 'habilitar')->name('habilitar')->middleware('auth');
     Route::post('/inhabilitar-producto/{id}', 'inhabilitar')->name('inabilitar')->middleware('auth');
-});
+})->middleware('preventBack');
 
 Route::controller(VendedorController::class)->group(function(){
-    Route::get('/vendedor', [VendedorController::class, 'view'])->name('vendedor');
+    Route::get('/vendedor', [VendedorController::class, 'view'])->name('vendedor')->middleware('auth');;
     Route::post('/Guardar_vendedor','crearVendedor')->name('guardar_nuevo_vendedor')->middleware('auth');
-});
+})->middleware('preventBack');
 
 
 Route::get('/Wiki', [WikiController::class, 'wiki'])->name('wiki');
 // Route::get('/admin', [WikiController::class, 'crear'])->name('nconsola')->middleware('auth');
 Route::get('/mostrar', [WikiController::class, 'show'])->name('verconsola');
 Route::get('/mostrar',[WikiController::class,'mostrarwiki'])->name('mostrar')->middleware('auth');
-Route::post('/admin',[WikiController::class, 'store'])->name('nuevaconsola');
+Route::post('/admin',[WikiController::class, 'store'])->name('nuevaconsola')->middleware('auth');;
 Route::post('Wiki', [WikiController::class, 'nombreConsola'])->name('wiki.vista');
 Route::get('editar/{id}', [WikiController::class, 'edit'])->name('editarconsola')->middleware('auth');
 Route::put('actualizar-wiki/{id}', [WikiController::class, 'update'])->name('actualizarconsola')->middleware('auth');
 
-Route::post('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem');
+Route::post('/agregaritem', [CarritoController::class, 'agregaritem'])->name('agregaritem')->middleware('auth');;
 
-Route::get('/vercarrito', [CarritoController::class, 'vercarrito'])->name('vercarrito');
-Route::get('/incrementar/{id}', [CarritoController::class, 'incrementarcantidad'])->name('incrementarcantidad');
-Route::get('/diminuir/{id}', [CarritoController::class, 'disminuircantidad'])->name('disminuircantidad');
-Route::get('/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('eliminar');
-Route::get('/eliminarcarrito', [CarritoController::class,'eliminarCarrito'])->name('eliminarcarrito');
-Route::get('/confirmarcarrito', [CarritoController::class, 'confirmarcarrito'])->name('confirmarcarrito');
+Route::get('/vercarrito', [CarritoController::class, 'vercarrito'])->name('vercarrito')->middleware('auth');;
+Route::get('/incrementar/{id}', [CarritoController::class, 'incrementarcantidad'])->name('incrementarcantidad')->middleware('auth');;
+Route::get('/diminuir/{id}', [CarritoController::class, 'disminuircantidad'])->name('disminuircantidad')->middleware('auth');;
+Route::get('/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('eliminar')->middleware('auth');;
+Route::get('/eliminarcarrito', [CarritoController::class,'eliminarCarrito'])->name('eliminarcarrito')->middleware('auth');;
+Route::get('/confirmarcarrito', [CarritoController::class, 'confirmarcarrito'])->name('confirmarcarrito')->middleware('auth');;
 
 /* Route::controller(ProductosController::class)->group(function(){
     Route::get('/consolawiki', 'mostrar')->name('#');
