@@ -17,48 +17,17 @@ class ProductosController extends Controller
     /**
      * Display a listing of the resource.
      */
-
-    public function categoria(Request $request) {
-
-        // Obtener todas las categositas
-        $categoria = $request->input('categoria');
-        switch ($categoria) {
-            case 'play':
-                $productos = Productos::where('categoria', 'PlayStation')->where('status', 'Habilitado')->get();
-                // Mostrar los productos encontrados
-                return view('productos.categorias', compact('productos'));
-                break;
-            case 'xbox':
-                    $productos = Productos::where('categoria', 'Xbox')->where('status', 'Habilitado')->get();
-                    // Mostrar los productos encontrados
-                    return view('productos.categorias', compact('productos'));
-                break;
-            case 'nintendo':
-                $productos = Productos::where('categoria', 'Nintendo')->where('status', 'Habilitado')->get();
-                // Mostrar los productos encontrados
-                return view('productos.categorias', compact('productos'));
-                break;
-            case 'perifericos':
-                    $productos = Productos::where('categoria', 'Perifericos')->where('status', 'Habilitado')->get();
-                    // Mostrar los productos encontrados
-                    return view('productos.categorias', compact('productos'));
-                break;
-            case 'otros':
-                    $productos = Productos::where('categoria', 'Otros')->where('status', 'Habilitado')->get();
-
-                    // Mostrar los productos encontrados
-                    return view('productos.categorias', compact('productos'));
-                break;
-            default:
-                $productos = productos::all(); // Recuperar todos los registros de la tabla 'productos'
-                return view('productos.categorias', compact('productos'));
-                break;
+    public function categoria($categoria)
+    {
+        // Obtener productos por categoría
+        if ($categoria === 'todos') {
+            $productos = Productos::all(); // Si es "Todos", obtener todos los productos
+        } else {
+            $productos = Productos::where('categoria', $categoria)->get(); // Filtrar por categoría
         }
-        // Mostrar los productos encontrados
-        
-
-        
+        return view('productos.categorias', ['productos' => $productos]); // Pasar los productos a tu vista
     }
+
 
     public function wiki(){
         return view('wiki.enciclo');

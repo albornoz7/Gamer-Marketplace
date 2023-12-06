@@ -21,50 +21,13 @@ class WikiController extends Controller
 
     
 
-    public function nombreConsola(Request $request) {
+    public function nombreConsola($nombre_consola) {
+        // Obtener productos por categoría
+        $nombre_consola = consolawiki::where('nombre_consola', $nombre_consola)->get(); // Filtrar por categoría
 
-        // Obtener todas las categositas
-        $nombre_consola = $request->input('nombre_consola');
-        switch ($nombre_consola) {
-            case 'playstation':
-                $consolawiki = consolawiki::where('nombre_consola', 'playStation')->get();
-                // Mostrar los productos encontrados
-                return view('wiki.wiki', compact('consolawiki'));
-                break;
-            case 'xbox':
-                    $consolawiki = consolawiki::where('nombre_consola', 'Xbox')->get();
-                    // Mostrar los productos encontrados
-                    return view('wiki.wiki', compact('consolawiki'));
-                break;
-            case 'nintendo':
-                $consolawiki = consolawiki::where('nombre_consola', 'Nintendo')->get();
-                // Mostrar los productos encontrados
-                return view('wiki.wiki', compact('consolawiki'));
-                break;
-            case 'sega':
-                    $consolawiki = consolawiki::where('nombre_consola', 'sega')->get();
-                    // Mostrar los productos encontrados
-                    return view('wiki.wiki', compact('consolawiki'));
-                break;
-            case 'arcade':
-                    $consolawiki = consolawiki::where('nombre_consola', 'arcade')->get();
-                    // Mostrar los productos encontrados
-                    return view('wiki.wiki', compact('consolawiki'));
-                break;
-            case 'atari':
-                    $consolawiki = consolawiki::where('nombre_consola', 'atari')->get();
-                    // Mostrar los productos encontrados
-                    return view('wiki.wiki', compact('consolawiki'));
-                break;
-            case 'historia':
-                    return view('wiki.wikiInicio');
-                break;
-            default:
-                $consolawiki = consolawiki::all(); // Recuperar todos los registros de la tabla 'productos'
-                return view('wiki.wiki');
-                break;
-        }
+        return view('wiki.wiki', ['consolas' => $nombre_consola]); // Pasar los productos a tu vista
     }
+
     public function wiki(){
         return view('wiki.wikiInicio');
     }

@@ -30,31 +30,7 @@
                         <form method="POST" action="{{ route('wiki.vista')}}">
                             @csrf <!-- Agrega el token CSRF para la seguridad -->
                         
-                            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-                                <ul class="hidden md:flex flex-auto space-x-2">
-                                    <li class="">
-                                        <button type="submit" name="nombre_consola" value="historia"  class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">HISTORIA</button>
-                                    </li>
-                                    <li class="">
-                                        <button type="submit" name="nombre_consola" value="playstation" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">PLAYSTATION</button>
-                                    </li>
-                                    <li class="">
-                                        <button type="submit" name="nombre_consola" value="xbox" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">XBOX</button>
-                                    </li>
-                                    <li class="">
-                                        <button type="submit" name="nombre_consola" value="nintendo" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">NINTENDO</button>
-                                    </li>
-                                    <li class="">
-                                        <button type="submit" name="nombre_consola" value="sega" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">SEGA</button>
-                                    </li>
-                                    <li class="">
-                                        <button type="submit" name="nombre_consola" value="atari" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">ATARI</button>
-                                    </li>
-                                    <li class="">
-                                        <button type="submit" name="nombre_consola" value="arcade" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white bg-indigo-600 cursor-pointer px-3 py-2.5 font-normal text-xs leading-3 shadow-md rounded">ARCADE</button>
-                                    </li>
-                                </ul>
-                            </div>
+                            
                         </form>
                     </nav>
                     <!-- for smaller devcies -->

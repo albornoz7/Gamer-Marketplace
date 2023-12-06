@@ -25,7 +25,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::controller(LoginController::class)->group(function() {
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
@@ -36,7 +35,7 @@ Route::controller(LoginController::class)->group(function() {
 
 // Rutas de los productos
 Route::controller(ProductosController::class)->group(function(){
-    Route::match(['get','post'],'/Categorias', 'categoria')->name('categoria');
+    Route::get('/categoria/{categoria}', 'categoria')->name('categoria');
     Route::get('/Productos', 'show') ->middleware('auth')->name('ver.productos');
     Route::get('/Lista_Productos', 'index')->name('ver.lista.productos')->middleware('auth');
     Route::get('/Crear_Producto', 'create')->name('crear.producto')->middleware('auth');
@@ -59,7 +58,7 @@ Route::get('/Wiki', [WikiController::class, 'wiki'])->name('wiki');
 Route::get('/mostrar', [WikiController::class, 'show'])->name('verconsola');
 Route::get('/mostrar',[WikiController::class,'mostrarwiki'])->name('mostrar')->middleware('auth');
 Route::post('/admin',[WikiController::class, 'store'])->name('nuevaconsola')->middleware('auth');;
-Route::post('Wiki', [WikiController::class, 'nombreConsola'])->name('wiki.vista');
+Route::get('Wiki/{nombre_consola}', [WikiController::class, 'nombreConsola'])->name('wiki.vista');
 Route::get('editar/{id}', [WikiController::class, 'edit'])->name('editarconsola')->middleware('auth');
 Route::put('actualizar-wiki/{id}', [WikiController::class, 'update'])->name('actualizarconsola')->middleware('auth');
 
