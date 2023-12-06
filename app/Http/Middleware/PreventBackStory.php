@@ -13,14 +13,21 @@ class PreventBackStory
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next, ...$guards)
     {
+        if (!auth()->check()) {
+            // No está autenticado, redirige a la página de inicio de sesión
+            return redirect('/login');
+        }
+        
+        // Realiza la configuración de la caché
         $response = $next($request);
-    
-        $response->headers->set('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+
+        // Configurar los encabezados de caché para evitar el almacenamiento en caché
+        $response->headers->set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
         $response->headers->set('Pragma', 'no-cache');
-        $response->headers->set('Expires', 'Fri, 01 Jan 1990 00:00:00 GMT');
-    
+        $response->headers->set('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
+
         return $response;
     }
     

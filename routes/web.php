@@ -88,7 +88,6 @@ Route::get('/cancel', [CarritoController::class, 'cancel'])->name('cancel');
 
 Route::get('/pedidos', [PedidosController::class, 'index'])->name('pedidos')->middleware('auth');
 Route::get('/detalles/detalles/{id}', [PedidosController::class, 'show'])->name('detalles')->middleware('auth');
-Route::get('detallesc/', [PedidosController::class, 'detallesPedidosUsuarios'])->name('detallesc')->middleware('auth');
 Route::get('/pedidos/estado/{id}/{status}', [PedidosController::class, 'updateEstado'])->name('estado')->middleware('auth');
 Route::get('estado/pedido/{id}',[PedidosController::class, 'updateEstado'])->name('change.status')->middleware('auth');
 
@@ -96,10 +95,17 @@ Route::get('/verproductos',[AdminController::class,'mostrarProductos'])->name('v
 Route::get('/verusuarios',[AdminController::class,'mostrarUsuarios'])->name('verusuarios')->middleware('auth');
 Route::delete('/eliminar_usuario/{id}',[AdminController::class,'destruir'])->name('eliminar_usuario')->middleware('auth');
 
+
+Route::middleware(['preventBack'])->group(function () {    
+    Route::get('detallesc/', [PedidosController::class, 'detallesPedidosUsuarios'])->name('detallesc')->middleware('auth');
+
+    // Crud usuario 
+    
 Route::get('/configuracion/perfil/{id}', [UsuarioController::class, 'index'])->name('usuario.configuracion');
 Route::get('/configuracion/perfil/{id}', [UsuarioController::class, 'edit'])->name('actualizado1');
 Route::put('/configuracion/perfil/{id}',  [UsuarioController::class, 'update'])->name('actualizado');
 Route::post('/configuracion/perfil/{id}',  [UsuarioController::class, 'updatePassword'])->name('contra');
 
+});
 
 

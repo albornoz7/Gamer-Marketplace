@@ -224,7 +224,7 @@
         </nav>
     @show
 
-    <div class="container ">
+    <div class=" w-screen ">
         @yield('content')
     </div>
 
