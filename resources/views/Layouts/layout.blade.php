@@ -137,7 +137,10 @@
                                 @if(Auth::check())
                                 @if(Auth::user()->rol_id == 1)
                                     <a href="{{ route('vendedor') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vendedor</a>
-                                    
+                                    <a href="{{route('actualizado', Auth::user()->id)}}" role="menuitem"
+                                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-blue-600">
+                                        Configurar
+                                    </a>
                                     <a href="{{ route('detallesc') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Productos Comprados</a>
                                 @endif
 
@@ -145,6 +148,8 @@
                                 <a href="{{route('ver.lista.productos')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Productos</a> 
                                 <a href="{{ route('crear.producto') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vender</a>
                                 <a href="{{ route('pedidos') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Productos Vendidos</a>
+                                <a href="{{ route('pedidos') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Productos Vendidos</a>
+
                                 @endif
 
                                 @if(Auth::user()->rol_id == 3)
@@ -152,7 +157,6 @@
                                 <a href="{{ route('mostrar') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Enciclopedia</a>
                                 <a href="{{ route('verusuarios') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Usuarios</a>
                                 <a href="{{ route('verproductos') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Ver Productos</a>
-                                <a href="{{ route('crear.producto') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Vender</a>
                                 @endif
 
                             @endif

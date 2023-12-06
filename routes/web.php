@@ -9,6 +9,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\PagosController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsuarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,6 +95,11 @@ Route::get('estado/pedido/{id}',[PedidosController::class, 'updateEstado'])->nam
 Route::get('/verproductos',[AdminController::class,'mostrarProductos'])->name('verproductos')->middleware('auth');
 Route::get('/verusuarios',[AdminController::class,'mostrarUsuarios'])->name('verusuarios')->middleware('auth');
 Route::delete('/eliminar_usuario/{id}',[AdminController::class,'destruir'])->name('eliminar_usuario')->middleware('auth');
+
+Route::get('/configuracion/perfil/{id}', [UsuarioController::class, 'index'])->name('usuario.configuracion');
+Route::get('/configuracion/perfil/{id}', [UsuarioController::class, 'edit'])->name('actualizado1');
+Route::put('/configuracion/perfil/{id}',  [UsuarioController::class, 'update'])->name('actualizado');
+Route::post('/configuracion/perfil/{id}',  [UsuarioController::class, 'updatePassword'])->name('contra');
 
 
 
