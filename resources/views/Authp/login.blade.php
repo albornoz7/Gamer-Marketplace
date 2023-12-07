@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <form action="{{ route('authenticate') }}" method="post">
+    {{-- <form action="{{ route('authenticate') }}" method="post">
         @csrf
 
         <section class="bg-blueGray-50">
@@ -42,10 +42,10 @@
                 </div>
             </div>
         </section>
-    </form>
+    </form> --}}
 
     <!-- component -->
-    <form action="{{ route('authenticate') }}" method="post">
+    
         <div class="">
             <div class="relative min-h-screen  grid bg-black ">
             <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 ">
@@ -72,9 +72,12 @@
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
                             <label class="font-bold text-lg text-white">Ingrese Contraseña</label> 
-                            <input type="password" formControlName="pin" placeholder="****" class="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white ">
+                            <input type="password" formControlName="pin" placeholder="****" class="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white @error('password') is-invalid @enderror" id="password" name="password"> 
+                            @if ($errors->has('password'))
+                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                        @endif
                             <label for="">iniciar sesion</label>
-                                <button (click)="onSubmit()" class="border border-indigo-600 bg-black text-white rounded-lg py-3 font-semibold" routerLink="/dashboard">Create Account</button>
+                                <button class="border border-indigo-600 bg-black text-white rounded-lg py-3 font-semibold" type="submit" value="Login">Iniciar Sesion</button>
                             </form>
                             </div>
                         </div>
