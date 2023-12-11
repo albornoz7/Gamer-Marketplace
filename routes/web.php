@@ -23,7 +23,7 @@ use App\Http\Controllers\UsuarioController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::controller(LoginController::class)->group(function() {
     Route::get('/register', 'register')->name('register');

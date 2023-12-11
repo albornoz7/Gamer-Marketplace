@@ -42,14 +42,14 @@
                 <select name="status" id="">
                     <option value="En Venta">Selecionar</option>
                     <option value="En Venta"@selected("En venta" == $productos->status)>En Venta</option>
-                    <option value="Pendiente"@selected("Pendiente" == $productos->status)>Pendiente</option>
+                    {{-- <option value="Pendiente"@selected("Pendiente" == $productos->status)>Pendiente</option> --}}
                     <option value="Vendido"@selected("Vendido" == $productos->status)>Vendido</option>
                 </select>
             </div>
         </div>
 
 
-        <div class="relative z-0 w-full mb-6 group">
+        {{-- <div class="relative z-0 w-full mb-6 group">
             <div class="relative z-0 w-full mb-6 group">
                 <strong >Estado (inicial):</strong>
                 <select name="categoria" id="">
@@ -60,7 +60,7 @@
                     <option value="Otros">Otros</option>
                 </select>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 

@@ -44,62 +44,120 @@
             <svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24"
                 xml:space="preserve">
-                <path d="M12.4,5.611V0.949c0-0.221-0.18-0.4-0.4-0.4s-0.4,0.179-0.4,0.4v4.662C8.87,5.819,6.705,8.083,6.705,10.865v7.292
-                    c0,2.919,2.376,5.294,5.295,5.294s5.295-2.375,5.295-5.294v-7.292C17.295,8.083,15.13,5.819,12.4,5.611z M12,6.37
-                    c2.479,0,4.494,2.016,4.494,4.495v1.166h-3.383V8.659c0-0.613-0.499-1.111-1.111-1.111s-1.111,0.499-1.111,1.111v3.372H7.506v-1.166
-                    C7.506,8.386,9.521,6.37,12,6.37z M12.311,8.659v3.556c0,0.171-0.139,0.311-0.311,0.311s-0.311-0.14-0.311-0.311V8.659
-                    c0-0.172,0.139-0.312,0.311-0.312S12.311,8.487,12.311,8.659z M12,22.651c-2.479,0-4.494-2.016-4.494-4.495V12.83h3.595
-                    c0.2,0.292,0.52,0.495,0.899,0.495s0.699-0.204,0.899-0.495h3.595v5.326C16.494,20.635,14.479,22.651,12,22.651z" />
+                <path
+                    d="M12.4,5.611V0.949c0-0.221-0.18-0.4-0.4-0.4s-0.4,0.179-0.4,0.4v4.662C8.87,5.819,6.705,8.083,6.705,10.865v7.292
+                            c0,2.919,2.376,5.294,5.295,5.294s5.295-2.375,5.295-5.294v-7.292C17.295,8.083,15.13,5.819,12.4,5.611z M12,6.37
+                            c2.479,0,4.494,2.016,4.494,4.495v1.166h-3.383V8.659c0-0.613-0.499-1.111-1.111-1.111s-1.111,0.499-1.111,1.111v3.372H7.506v-1.166
+                            C7.506,8.386,9.521,6.37,12,6.37z M12.311,8.659v3.556c0,0.171-0.139,0.311-0.311,0.311s-0.311-0.14-0.311-0.311V8.659
+                            c0-0.172,0.139-0.312,0.311-0.312S12.311,8.487,12.311,8.659z M12,22.651c-2.479,0-4.494-2.016-4.494-4.495V12.83h3.595
+                            c0.2,0.292,0.52,0.495,0.899,0.495s0.699-0.204,0.899-0.495h3.595v5.326C16.494,20.635,14.479,22.651,12,22.651z" />
             </svg>
             <span>Perifericos</span>
         </a>
         <a rel="noopener noreferrer" href="{{ route('categoria', ['categoria' => 'otros']) }}"
             class="flex items-center flex-shrink-0 px-5 py-3 space-x-2  text-gray-600">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M16 6H8a6 6 0 0 0 0 12h8a6 6 0 0 0 0-12zm-5 7H9v2H7v-2H5v-2h2V9h2v2h2v2zm3.5 2a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path></svg>            <span>Otros</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                <path
+                    d="M16 6H8a6 6 0 0 0 0 12h8a6 6 0 0 0 0-12zm-5 7H9v2H7v-2H5v-2h2V9h2v2h2v2zm3.5 2a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+                </path>
+            </svg> <span>Otros</span>
         </a>
     </div>
 
     <!-- Product List -->
+    @if ($productos->isEmpty())
+        <!-- component -->
+        <div class="flex min-h-screen items-center justify-center bg-gray-100">
+            <div class="rounded-lg bg-gray-50 px-16 py-14">
+                <div class="flex justify-center">
+                    <div class="rounded-full bg-red-200 p-6">
+                        <div class="flex h-16 w-16 items-center justify-center rounded-full bg-red-500 p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-8 h-8 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="my-4 text-center text-3xl font-semibold text-gray-700">Error</h3>
+                <p class="w-[230px] text-center font-normal text-gray-600">No existen productos en la categoria
+                    seleccionada.</p>
+            </div>
+        </div>
+    @endif
     <section class="py-10 bg-gray-100 flex">
         <div class="mx-auto grid max-w-6xl  grid-cols-1 gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             @foreach ($productos as $producto)
-                <article data-category="{{ $producto->categoria }}"
-                    class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
-                    <div class="relative flex items-end overflow-hidden rounded-xl">
-                        <img src="{{ asset($producto->foto) }}" alt="console Photo" class="w-96 h-48" />
-                    </div>
+                @if (Auth::user())
+                    @if ($producto->user_id != Auth::user()->id)
+                        <article data-category="{{ $producto->categoria }}"
+                            class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
+                            <div class="relative flex items-end overflow-hidden rounded-xl">
+                                <img src="{{ asset($producto->foto) }}" alt="console Photo" class="w-96 h-48" />
+                            </div>
 
-                    <div class="mt-1 p-2">
-                        <h2 class="text-slate-700">{{ $producto->nombre }}</h2>
-                        <p class="mt-1 text-sm text-slate-400">{{ $producto->descripcion }}</p>
+                            <div class="mt-1 p-2">
 
-                        <div class="mt-3 flex items-end justify-between">
-                            <p class="text-lg font-bold text-blue-500">{{ $producto->precio }}</p>
+                                <h2 class="text-slate-700">{{ $producto->nombre }}</h2>
+                                <p class="mt-1 text-sm text-slate-400">{{ $producto->user->name }}</p>
+                                <p class="mt-1 text-sm text-slate-400">{{ $producto->descripcion }}</p>
 
-                            <div class="flex items-center space-x-1.5 rounded-lg px-4 py-1.5 text-white duration-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                                </svg>
+                                <div class="mt-3 flex items-end justify-between">
+                                    <p class="text-lg font-bold text-blue-500">{{ $producto->precio }}</p>
 
-                                @auth 
-                                    <form action="{{ route('agregaritem') }}" method="POST">
-                                        @csrf
-                                        <div class="flex md:mt-2 lg:mt-0">
-                                            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                                    <div class="flex items-center space-x-1.5 rounded-lg px-4 py-1.5 text-white duration-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                        </svg>
 
-                                            <button href=""type="submit"
-                                                class="linear rounded-[5px] bg-blue-700 px-4 py-2 text-xs font-medium  transition duration-200  hover:bg-brand-800 active:bg-brand-700 text-white">Agregar
-                                                al carrito</button>
-                                        </div>
-                                    </form>
-                                @endauth
+                                        @auth
+                                            <form action="{{ route('agregaritem') }}" method="POST">
+                                                @csrf
+                                                <div class="flex md:mt-2 lg:mt-0">
+                                                    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+
+                                                    <button type="submit"
+                                                        class="linear rounded-[5px] bg-blue-700 px-4 py-2 text-xs font-medium  transition duration-200  hover:bg-brand-800 active:bg-brand-700 text-white">Agregar
+                                                        al carrito</button>
+                                                </div>
+                                            </form>
+                                        @endauth
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    @endif
+                @else
+                    <article data-category="{{ $producto->categoria }}"
+                        class="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
+                        <div class="relative flex items-end overflow-hidden rounded-xl">
+                            <img src="{{ asset($producto->foto) }}" alt="console Photo" class="w-96 h-48" />
+                        </div>
+                        <div class="mt-1 p-2">
+                            <h2 class="text-slate-700">{{ $producto->nombre }}</h2>
+                            <p class="mt-1 text-sm text-slate-400">{{ $producto->user->name }}</p>
+                            <p class="mt-1 text-sm text-slate-400">{{ $producto->descripcion }}</p>
+
+                            <div class="mt-3 flex items-end justify-between">
+                                <p class="text-lg font-bold text-blue-500">{{ $producto->precio }}</p>
+
+                                <div class="flex items-center space-x-1.5 rounded-lg px-4 py-1.5 text-white duration-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                    </svg>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                @endif
             @endforeach
+        </div>
     </section>
 
     <script>
@@ -133,5 +191,4 @@
             });
         });
     </script>
-
 @endsection

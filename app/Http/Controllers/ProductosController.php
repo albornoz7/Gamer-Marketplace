@@ -21,9 +21,9 @@ class ProductosController extends Controller
     {
         // Obtener productos por categoría
         if ($categoria === 'todos') {
-            $productos = Productos::all(); // Si es "Todos", obtener todos los productos
+            $productos = Productos::all()->where('status', 'Habilitado'); // Si es "Todos", obtener todos los productos
         } else {
-            $productos = Productos::where('categoria', $categoria)->get(); // Filtrar por categoría
+            $productos = Productos::where('categoria', $categoria)->where('status', 'Habilitado')->get(); // Filtrar por categoría
         }
         return view('productos.categorias', ['productos' => $productos]); // Pasar los productos a tu vista
     }
@@ -59,7 +59,7 @@ class ProductosController extends Controller
             'descripcion'=>'required',
             'cantidad'=>'required',
             'precio'=>'required',
-            'status'=>'required',
+            
             'due_date'=>'required', 
             'categoria'=>'required',
         ]);
@@ -75,7 +75,7 @@ class ProductosController extends Controller
             'descripcion' => $request->input('descripcion'),
             'cantidad' => $request->input('cantidad'),
             'precio' => $request->input('precio'),
-            'status' => $request->input('status'),
+            'status' => 'Inhabilitado',
             'categoria' => $request->input('categoria'),
             'due_date' => date('Y-m-d'),
             'foto'=> 'fotos/' . $imageName,
@@ -91,9 +91,8 @@ class ProductosController extends Controller
      */
     public function show(productos $productos)
     {   
-        $user_id = Auth::id();
-
-        $productos = productos::where('user_id', "!=", $user_id)->where('status', 'Habilitado')->get(); // Recuperar todos los registros de la tabla 'productos'
+        
+        $productos = productos::where('status', 'Habilitado')->get(); // Recuperar todos los registros de la tabla 'productos'
         return view('productos.categorias', compact('productos'));
     }
 
@@ -116,7 +115,6 @@ class ProductosController extends Controller
         'precio' => 'required',
         'status' => 'required',
         'due_date' => 'required',
-        'categoria' => 'required',
         'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
@@ -142,7 +140,7 @@ class ProductosController extends Controller
     $producto->precio = $request->input('precio');
     $producto->status = $request->input('status');
     $producto->due_date = $request->input('due_date');
-    $producto->categoria = $request->input('categoria');
+    $producto->categoria = $producto->categoria;
     $producto->save();
 
     return redirect()->route('ver.lista.productos');

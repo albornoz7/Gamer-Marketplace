@@ -3,7 +3,7 @@
     <!-- component -->
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <div
-        class="bg-blue-400 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-blue bottom-0 leading-5 h-full w-full overflow-hidden">
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-Gray-200 border-0">
         
     </div>
     <div
@@ -17,21 +17,22 @@
                 </div>
                 <form action="{{route('guardar_nuevo_vendedor')}}" method="POST">
                     @csrf
+                    
                 <div class="space-y-6">
                 <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" value="{{ Auth::user()->name }}" readonly>
+                        <input class=" w-full text-sm  px-4 py-3 bg-white-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" value="{{ Auth::user()->name }}" readonly>
                 </div>
                 <div class="space-y-6">
                     <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text"  value="{{ Auth::user()->email }}" readonly>
+                        <input class=" w-full text-sm  px-4 py-3 bg-white-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text"  value="{{ Auth::user()->email }}" readonly>
                 </div>
                 <div class="space-y-6">
                     <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="celular" placeholder="Celular">
+                        <input class=" w-full text-sm  px-4 py-3 bg-white-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="celular" placeholder="Celular">
                 </div>
                 <div class="space-y-6">
                     <div class="">
-                        <input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="direccion" placeholder="Direccion">
+                        <input class=" w-full text-sm  px-4 py-3 bg-white-200 focus:bg-black-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="text" name="direccion" placeholder="Direccion">
                 </div>
 
                         <div class="flex items-center justify-center space-x-2 my-5">
@@ -40,21 +41,26 @@
                             <span class="h-px w-16 bg-gray-100"></span>
                         </div>
                         
-                <div class="relative z-0 w-full mb-6 group">
-                    <div class="relative z-0 w-full mb-6 group">
-                        <select name="metodo_de_pago" id="">
-                            <option value="PlayStation">Bancolombia</option>
-                            <option value="Xbox">Nequi</option>
-                            <option value="Nintendo">Efectivo</option>
-                            <option value="Perifericos">Pay-Pal</option>
-                            
-                        </select>
-                    </div>
+
+                <div class="max-w-2xl mx-auto">
+
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Seleciona el metodo de pago</label>
+                        <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>.............</option>
+                        <option value="bancolombia">Bancolombia</option>
+                        <option value="nequi">Nequi</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="paypal">Pay-Pal</option>
+                    </select>
+                
+
+                    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
                 </div>
             </div>
+
                         <div>
-                            <button type="submit" class="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500">
-                    Sign in
+                            <button type="submit" class="bg-blue-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">
+                    Actualizar Perfil
                 </button>
                         </div>
                     </div>

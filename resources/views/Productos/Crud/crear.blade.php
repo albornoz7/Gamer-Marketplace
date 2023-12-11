@@ -39,16 +39,15 @@
 </div>
 
             <div class="grid md:grid-cols-2 md:gap-6">
-                <div class="relative z-0 w-full mb-6 group">
+                {{-- <div class="relative z-0 w-full mb-6 group">
                     <div class="relative z-0 w-full mb-6 group">
                         <strong >(inicial):</strong>
                         <select name="status" id="">
                             <option value="Habilitado">En Venta</option>
-                            <option value="Inhabilitado">Pendiente</option>
-                            <option value="Vendido">Vendido</option>
+                            
                         </select>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="relative z-0 w-full mb-6 group">
                     <div class="relative z-0 w-full mb-6 group">

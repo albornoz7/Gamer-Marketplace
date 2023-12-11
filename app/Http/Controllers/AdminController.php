@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function mostrarUsuarios()
 {
-    $usuarios = User::all();
+    $usuarios = User::where('id', '!=', 1)->get();
     return view('admin.verusuarios', compact('usuarios'));
 }
 

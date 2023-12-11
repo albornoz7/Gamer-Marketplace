@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form  action="{{ route('store') }}" method="post">
+    <form  action="{{ route('store') }}" method="post" class="mt-20">
         @csrf
         <div class="w-full lg:w-4/12 px-4 mx-auto pt-6">
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-Gray-200 border-0">
@@ -31,7 +31,7 @@
 
             
     </div>
-        <button type="submit" class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mb-2">Registro</button>
+        <button type="submit" class="bg-blue-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150">Registro</button>
         
     </form>
     <div class="text-center">
@@ -39,7 +39,5 @@
     </div>
     
     </div>
-</div>
-</div>
-</div>
+
 @endsection
