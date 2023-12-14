@@ -3,8 +3,8 @@
 @section('content')
     <div class="row mt-6">
         <div>
-            <a href="{{ route('crear.producto') }}" class="px-4 py-2 bg-blue-500 m-5 text-white rounded-lg">Agregar Nuevo
-                Producto</a>
+            {{-- <a href="{{ route('crear.producto') }}" class="px-4 py-2 bg-blue-500 m-5 text-white rounded-lg">Agregar Nuevo
+                Producto</a> --}}
         </div>
     </div>
     <!-- component -->

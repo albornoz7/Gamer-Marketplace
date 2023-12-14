@@ -3,8 +3,8 @@
 @section('content')
 
 
-    <a href="{{route('ver.lista.productos')}}" class="px-4 py-2 bg-green-500 m-5 text-white rounded-lg">Productos</a>
-    <div class="w-3/5 mx-auto">
+{{--     <a href="{{route('ver.lista.productos')}}" class="px-4 py-2 bg-green-500 m-5 text-white rounded-lg">Productos</a>
+ --}}    <div class="w-3/5 mx-auto px-4 py-2 m-5">
 
         <form action="{{route('guardar.producto')}}" method="POST" enctype="multipart/form-data">
             @csrf
