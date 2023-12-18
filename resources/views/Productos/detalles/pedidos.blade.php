@@ -59,7 +59,7 @@
                             </th>
                             <th scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                Total
+                                Precio
                             </th>
 
                             <th scope="col" class="relative py-3.5 px-4">
@@ -77,15 +77,16 @@
                                     </div>
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                    {{\Carbon\Carbon::parse($orden->created_at)->formatLocalized('%d %B %Y %I:%M %p') }}
+                                    {{ \Carbon\Carbon::parse($orden->created_at)->formatLocalized('%d %B %Y %I:%M %p') }}
                                 </td>
                                 <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                     <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2">
-                                        <h2 id="estadoProducto" class="text-sm font-normal">{{ $orden->pedidos->status }}</h2>
+                                        <h2 id="estadoProducto" class="text-sm font-normal">{{ $orden->pedidos->status }}
+                                        </h2>
                                     </div>
 
-                                        
-                                    
+
+
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                     <div class="flex items-center gap-x-2">
@@ -99,12 +100,12 @@
                                     </div>
                                 </td>
                                 <td class="px-5 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                        <p class="underline underline-offset-8 uppercase "> {{ $orden->productos->nombre }}</p>
-                                        <br>
+                                    <p class="underline underline-offset-8 uppercase "> {{ $orden->productos->nombre }}</p>
+                                    <br>
 
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                    ${{$orden->pedidos->total }}
+                                    ${{ $orden->pedidos->total }}
                                 </td>
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
 
@@ -117,11 +118,13 @@
                                             </button>
                                         </form>
                                         @if ($orden->pedidos->status == 'PAGADO')
-                                            <a href="{{route('change.status',$orden->pedidos->id)}}"  class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
+                                            <a href="{{ route('change.status', $orden->pedidos->id) }}"
+                                                class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
                                                 Cambiar Estado
                                             </a>
                                         @else
-                                            <a href="{{route('change.status',$orden->pedidos->id)}}"  class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
+                                            <a href="{{ route('change.status', $orden->pedidos->id) }}"
+                                                class="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
                                                 Cambiar Estado
                                             </a>
                                         @endif
@@ -143,22 +146,24 @@
             if (confirm("¿Estás seguro de que deseas cambiar el estado del producto?")) {
                 // Realiza una petición al controlador para actualizar el estado
                 fetch(`/actualizarEstado/${id}`, {
-                    method: 'POST',
-                    body: JSON.stringify({ status: 'nuevo_estado' }), // Reemplaza 'nuevo_estado' con el estado deseado
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Asegúrate de incluir el token CSRF si estás utilizando Laravel
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Aquí puedes realizar alguna acción adicional después de actualizar el estado, como mostrar un mensaje de éxito
-                    alert("El estado del producto ha sido actualizado correctamente.");
-                })
-                .catch(error => {
-                    // Maneja cualquier error que pueda ocurrir durante la actualización del estado
-                    console.error('Error:', error);
-                });
+                        method: 'POST',
+                        body: JSON.stringify({
+                            status: 'nuevo_estado'
+                        }), // Reemplaza 'nuevo_estado' con el estado deseado
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}', // Asegúrate de incluir el token CSRF si estás utilizando Laravel
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Aquí puedes realizar alguna acción adicional después de actualizar el estado, como mostrar un mensaje de éxito
+                        alert("El estado del producto ha sido actualizado correctamente.");
+                    })
+                    .catch(error => {
+                        // Maneja cualquier error que pueda ocurrir durante la actualización del estado
+                        console.error('Error:', error);
+                    });
             }
             // Después de actualizar el estado del producto, obtén el nuevo estado
             var nuevoEstado = "Pagado";

@@ -113,7 +113,7 @@ class ProductosController extends Controller
         'descripcion' => 'required',
         'cantidad' => 'required',
         'precio' => 'required',
-        'status' => 'required',
+        // 'status' => 'required',
         'due_date' => 'required',
         'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
@@ -138,7 +138,7 @@ class ProductosController extends Controller
     $producto->descripcion = $request->input('descripcion');
     $producto->cantidad = $request->input('cantidad');
     $producto->precio = $request->input('precio');
-    $producto->status = $request->input('status');
+    // $producto->status = $request->input('status');
     $producto->due_date = $request->input('due_date');
     $producto->categoria = $producto->categoria;
     $producto->save();
@@ -146,14 +146,14 @@ class ProductosController extends Controller
     return redirect()->route('ver.lista.productos');
 }
 
-public function destroy($id){
-    $producto = productos::find($id);
-    $foto = $producto->foto; // Obtén el nombre de la foto antes de eliminar el producto
-    $mensaje = 'Producto eliminado con éxito';
-    $producto->status = "Inhabilitado";
-    $producto->save();
-    return redirect()->back()->with('mensaje', $mensaje);
-}
+// public function destroy($id){
+//     $producto = productos::find($id);
+//     $foto = $producto->foto; // Obtén el nombre de la foto antes de eliminar el producto
+//     $mensaje = 'Producto eliminado con éxito';
+//     $producto->status = "Inhabilitado";
+//     $producto->save();
+//     return redirect()->back()->with('mensaje', $mensaje);
+// }
 public function habilitar($id){
     $producto = productos::find($id);
     $producto->status = "Habilitado";

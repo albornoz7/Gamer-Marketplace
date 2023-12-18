@@ -9,6 +9,7 @@
     @method('PUT')       
     @csrf
     <div class="relative z-8 w-full mb-6 group">
+        <img src="{{ asset($productos->foto) }}" alt="console Photo" class="w-96 h-48" />
         <input type="file" name="foto" value="{{$productos->foto}}" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  required />
         <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Selecionar Foto</label>
     </div>
@@ -37,15 +38,15 @@
             <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Fecha de Publicacion</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
-            <div class="relative z-0 w-full mb-6 group">
+            {{-- <div class="relative z-0 w-full mb-6 group">
                 <strong >Estado (inicial):</strong>
                 <select name="status" id="">
                     <option value="En Venta">Selecionar</option>
                     <option value="En Venta"@selected("En venta" == $productos->status)>En Venta</option>
-                    {{-- <option value="Pendiente"@selected("Pendiente" == $productos->status)>Pendiente</option> --}}
+                    <option value="Pendiente"@selected("Pendiente" == $productos->status)>Pendiente</option>
                     <option value="Vendido"@selected("Vendido" == $productos->status)>Vendido</option>
                 </select>
-            </div>
+            </div> --}}
         </div>
 
 

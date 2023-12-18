@@ -80,9 +80,8 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="my-4 text-center text-3xl font-semibold text-gray-700">Error</h3>
-                <p class="w-[230px] text-center font-normal text-gray-600">No existen productos en la categoria
-                    seleccionada.</p>
+                <h3 class="my-4 text-center text-3xl font-semibold text-gray-700">NO HAY PRODUCTOS</h3>
+                <p class="w-[230px] text-center font-normal text-gray-600"></p>
             </div>
         </div>
     @endif

@@ -57,7 +57,7 @@
                             </th>
                             <th scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                Total
+                                Precio
                             </th>
 
                         
@@ -100,14 +100,15 @@
 
                                 </td>
                                 <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                    ${{$orden->pedidos->total }}
+                                    {{ $orden->productos->precio }}
                                 </td>
-                    
                             </tr>
                         @endforeach
 
                     </tbody>
                 </table>
+                {{-- <p>total de todas las compras realizadas </p>
+                ${{$orden->pedidos->total }} --}}
                 {{ $pedidos->links() }}
         </div>
     </section>
